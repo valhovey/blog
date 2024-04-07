@@ -1,7 +1,7 @@
 ---
 math: true
-permalink: emergence-of-integers
-title: Emergence of Integers
+permalink: the-integers-in-our-continuum
+title: The Integers In Our Continuum
 layout: page
 date: 2024-04-06
 ---

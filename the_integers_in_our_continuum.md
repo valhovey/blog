@@ -118,7 +118,7 @@ Like in Peano Arithmetic and recursively enumerable formal systems, the \\(Y\\) 
 
 {:refdef: style="display:flex;align-items:center;flex-direction:column;"}
 ![Pasted image 20240407000029.png](/blog/images/the_integers_in_our_continuum/Pasted image 20240407000029.png){:target="_blank"}
-*The Lambda Cube, where → indicates adding dependent types, ↑ indicates adding polymorphism, and ↗ indicates allowing type operators. ( ([source](https://en.wikipedia.org/wiki/Lambda_cube#/media/File:Lambda_Cube_img.svg){:target="_blank"}).*
+*The Lambda Cube, where → indicates adding dependent types, ↑ indicates adding polymorphism, and ↗ indicates allowing type operators.) ([source](https://en.wikipedia.org/wiki/Lambda_cube#/media/File:Lambda_Cube_img.svg){:target="_blank"}).*
 {:refdef}
 
 In typed Lambda Calculus, it is impossible to create the \\(Y\\) combinator. The same self-reference that gives it its utility results in an Achilles' heel that results in the type signature never terminating. Still, the typed lambda calculus is incredibly useful in its own right and supports many rich operations, just not general recursion. [Many extensions can be added to the types](https://en.wikipedia.org/wiki/Lambda_cube){:target="_blank"}, but until you allow for something like the \\(Y\\) combinator these systems are all [strongly normalizing](https://en.wikipedia.org/wiki/Normal_form_(abstract_rewriting)){:target="_blank"} (which means operations are guaranteed to terminate and not infinitely regress).

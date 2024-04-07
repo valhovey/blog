@@ -201,7 +201,3 @@ I think this one turned out the coolest. The yellow pixels represent inputs that
 ## Closing Thoughts
 
 I end this exploration with no real conclusion as to why these fractal regions of the complex plane map to Gaussian Integers under these functions. Is this fact extant without numerical approximation? I still have many unanswered questions about these fractals, and hope to one day get to the bottom of this.
-
----
-
-<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.

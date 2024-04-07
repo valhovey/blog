@@ -203,7 +203,3 @@ These cuts correspond to the Farey Sequence mapped circularly instead of in the 
 ## Thank You
 
 Thanks for coming along for this journey with me! There are no doubt many more instances of the Farey Sequence showing up in our lives, in music, and in the universe. It's a gorgeous structure that reminds us how disparate topics can be intimately connected behind the curtain.
-
----
-
-<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.

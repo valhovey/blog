@@ -201,7 +201,3 @@ I would like to analyze all 262,144 Life-Like Cellular Automata using this metho
 And what if some CA's do not have a long-term steady state? If so, what rules produce smooth curves like the ones described here, and which ones produce unexpected curves?
 
 Lastly, I want to understand more about how these curves relate to information metabolism, and in turn how a similar analysis could be applied to studies on the definition and origin of life. If we find that the rules of our universe result in a similar slow-burn of available complexity, perhaps that could explain if life is a natural consequence of the physical laws that govern existence.
-
----
-
-<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.

@@ -263,10 +263,7 @@ Somewhere amidst the swirl of equivalent systems masquerading as independent ent
   <img id="fallbackImage" src="/blog/images/vineyard/vineyard_loop.webp" alt="Driving past vineyards"> 
 </div>
 
-{% if page.applause_button %}
-  <link rel="stylesheet" href="https://unpkg.com/applause-button/dist/applause-button.css">
-  <script src="https://unpkg.com/applause-button/dist/applause-button.js"></script>
-{% endif %}
+<applause-button style="width: 58px; height: 58px;"/>
 
 # Afterward
 

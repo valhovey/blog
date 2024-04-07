@@ -263,6 +263,11 @@ Somewhere amidst the swirl of equivalent systems masquerading as independent ent
   <img id="fallbackImage" src="/blog/images/vineyard/vineyard_loop.webp" alt="Driving past vineyards"> 
 </div>
 
+{% if page.applause_button %}
+  <link rel="stylesheet" href="https://unpkg.com/applause-button/dist/applause-button.css">
+  <script src="https://unpkg.com/applause-button/dist/applause-button.js"></script>
+{% endif %}
+
 # Afterward
 
 I'm so interested to find an answer to the question: "what is the canonical model for computation?". I hope that, in finding this answer, we might inch closer to understanding the connection between all of these systems. [Category Theory](https://en.wikipedia.org/wiki/Category_theory){:target="_blank"} seems uniquely poised to approach this problem, and (maybe not so) coincidentally has already fueled a theory of how to make Lambda Calculus practical. It is a system of mathematics adept at looking at numerous instances of similar operations and finding the skeleton underlying them all. A popular example is [the categorical product](https://en.wikipedia.org/wiki/Product_(category_theory)){:target="_blank"} which (at first glance) seems miraculous and impossible for anyone to be so clever as to come up with it in a vacuum. That would be correct, as Category Theory is more of a meta-study of mathematics and structure itself. At times, it feels more empirical than deductive, but it is no less effective as a mathematical vehicle for truth as any other field.

@@ -159,7 +159,9 @@ This was a watershed moment in the intersection of mathematics and computer scie
 *Ripples on an alpine lake.*
 {:refdef}
 
-Where does this leave us with our questions about the emergence of quanta in our models of physics? I believe an equivalent and perhaps more formal rephrasing of this question is "Do integers objectively exist, and if they don't, when and where do they emerge?". While reading David Tong's essay, one sentence especially stood out to me:
+Where does this leave us with our questions about the emergence of quanta in our models of physics? Lately I have been allowing myself to think more intuitively about these things, while attempting to remind myself that this is a form of play. If you will indulge me in this exploration, I would love to share the thoughts I have had so far (however incomplete they may be). My writing up to this point has mostly covered a reflection of what we currently know, so this marks a transition into my own reflection and opinions on where things may be headed in our understanding of the world.
+
+I believe an equivalent and perhaps more formal rephrasing the question of the emergence of quantiaztion is "Do integers objectively exist, and if they don't, when and where do they emerge?". While reading David Tong's essay, one sentence especially stood out to me:
 
 > The integers appear on the right-hand side only when we solve \[the Schrödinger Equation\].
 

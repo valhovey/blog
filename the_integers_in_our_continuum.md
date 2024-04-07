@@ -102,6 +102,11 @@ When solving wave equations, we make use of apparently magical techniques like [
 
 In a similar vein, I have always been awed and confused by the apparent divide between [number theory](https://en.wikipedia.org/wiki/Number_theory){:target="_blank"} and the other algebraic fields of mathematics. Look closely between any two regions of mathematical study and you will find numerous dualities weaving a dense web of interconnection.  Yet, number theory seems to exhibit a repelling force to the rest of math. Mathematical objects such as [the Riemann Hypothesis](https://en.wikipedia.org/wiki/Riemann_hypothesis){:target="_blank"} build a bridge to number theory by exploiting the periodicity of continuous functions. While I only have a cursory understanding of it, the [Langlands Problem](https://en.wikipedia.org/wiki/Langlands_program){:target="_blank"} is a massive effort to construct formidable and durable machinery for answering number theoretic questions using algebraic reasoning.
 
+{:refdef: style="display:flex;align-items:center;flex-direction:column;"}
+![Algebraic concepts linked with arrows](/blog/images/the_integers_in_our_continuum/math_connections.jpg){:target="_blank"}
+*A small sample of connected concepts in algebraic regions of mathematics.*
+{:refdef}
+
 What I mean by "algebraic" is that, for much of mathematics, a little goes a long way. By defining very simple constructs such as sets and binary operations with an amount of properties you could count on one hand, we can reconcile models so powerful that they [predicted the existence of Black Holes](https://en.wikipedia.org/wiki/Black_hole#History){:target="_blank"} before we ever directly imaged one. These are powerful ideas, and yet, they are also elegant and convenient. Simple concepts such as [Eigenvalues](https://en.wikipedia.org/wiki/Eigenvalues_and_eigenvectors){:target="_blank"} combined with infinite linear operators like differentials allow us to build bridges, predict quantum systems' behavior, and even probe the dynamics of biological populations.
 
 {:refdef: style="display:flex;align-items:center;flex-direction:column;"}

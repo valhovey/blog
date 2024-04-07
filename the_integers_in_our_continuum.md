@@ -26,6 +26,7 @@ date: 2024-04-06
 
 .video-container::before {
     left: 0;
+    z-index: 1;
     background: linear-gradient(to right, #fff 0%, transparent 100%);
 }
 

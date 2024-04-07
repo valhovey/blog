@@ -182,7 +182,7 @@ To me, it seems natural to accept that our reality is fundamentally continuous i
 
 Somewhere amidst the swirl of equivalent systems masquerading as independent entities, we may find a unifying pattern that is representative of the space of understandings that humans (and conscious entities) can possibly have. At the other side of that endeavor, we may stare into the mesmerizing patterns in an orchard [that connect to so many things](https://kylehovey.github.io/blog/on-vineyards-harmony-and-mathematics){:target="_blank"} and find what we see to be an abstract reflection of ourselves, and us a reflection of it.
 
-![Euclid's Orchard](/blog/images/the_in_our_continuum/farey.webp)
+![Euclid's Orchard](/blog/images/the_integers_in_our_continuum/farey.webp)
 
 # Afterward
 

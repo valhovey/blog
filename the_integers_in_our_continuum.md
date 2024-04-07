@@ -42,6 +42,37 @@ video {
 }
 </style>
 
+<script>
+// Wait for the DOM to fully load
+document.addEventListener('DOMContentLoaded', function () {
+    var video = document.getElementById('videoElement');
+    var fallbackImage = document.getElementById('fallbackImage');
+    
+    // This event listener checks if the video can play through.
+    video.addEventListener('canplaythrough', function() {
+        // Video is able to play, hide the fallback image
+        fallbackImage.style.display = 'none';
+        video.style.display = 'block'; // Ensure video is visible if it had been hidden
+    }, false);
+
+    // Fallback to the image if the video doesn't start playing
+    video.addEventListener('error', function() {
+        showFallbackImage();
+    });
+    
+    // iOS specific behavior
+    if (video.readyState < 3) { // HAVE_FUTURE_DATA (3) means enough data to play
+        showFallbackImage();
+    }
+
+    // Function to display the fallback image and hide the video
+    function showFallbackImage() {
+        fallbackImage.style.display = 'block'; // Show the fallback image
+        video.style.display = 'none'; // Hide the video
+    }
+});
+</script>
+
 {:refdef: style="display:flex;align-items:center;flex-direction:column;"}
 ![Wave-Like Interference Patterns](/blog/images/the_integers_in_our_continuum/Pasted image 20240406235914.png){:target="_blank"}
 *Wave Interference*
@@ -218,10 +249,11 @@ To me, it seems natural to accept that our reality is fundamentally continuous i
 
 Somewhere amidst the swirl of equivalent systems masquerading as independent entities, we may find a unifying pattern that is representative of the space of understandings that humans (and conscious entities) can possibly have. At the other side of that endeavor, we may stare into the mesmerizing patterns in an orchard [that connect to so many things](https://kylehovey.github.io/blog/on-vineyards-harmony-and-mathematics){:target="_blank"} and find what we see to be an abstract reflection of ourselves, and us a reflection of it.
 <div class="video-container">
-  <video loop autoplay muted playsinline class="video-container">
+  <video loop autoplay muted playsinline class="video-container" id="videoElement">
     <source src="/blog/images/the_integers_in_our_continuum/farey.webm" type="video/webm">
     Your browser does not support the video tag.
   </video>
+  <img id="fallbackImage" src="/blog/images/vineyard/vineyard_loop.webp" alt="Driving past vineyards"> 
 </div>
 
 # Afterward

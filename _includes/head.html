@@ -16,6 +16,24 @@
   <!-- Enable responsiveness on mobile devices-->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
+  <!-- Open Graph data for Facebook and generic sharing -->
+  <meta property="og:title" content="{{ page.title | escape }}">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="{{ site.url }}{{ page.url }}">
+  <% if page.featured_image %>
+  <meta property="og:image" content="{{ site.url }}{{ page.featured_image }}">
+  <% endif %>
+  <meta property="og:description" content="{{ page.description | default: site.description | escape }}">
+
+  <!-- Twitter Card data -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@yourusername">
+  <meta name="twitter:title" content="{{ page.title | escape }}">
+  <% if page.featured_image %>
+  <meta name="twitter:image" content="{{ site.url }}{{ page.featured_image }}">
+  <% endif %>
+  <meta name="twitter:description" content="{{ page.description | default: site.description | escape }}">
+
   <title>
     {% if page.title == "Home" %}
       {{ site.title }} &middot; {{ site.tagline }}

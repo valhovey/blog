@@ -2,6 +2,8 @@
 math: true
 permalink: turing-basins
 title: Turing's Hammer - Computation and Chaos
+description: Join me for an exploration of the connections between entropy, information, physics, computation, and mathematics.
+featured_image: /blog/images/turing_basins/expository/lake_stars.jpg
 layout: page
 date: 2020-05-13
 ---

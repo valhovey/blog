@@ -2,6 +2,8 @@
 math: true
 permalink: on-vineyards-harmony-and-mathematics
 title: On Vineyards, Harmony, and Mathematics
+description: The suprising connection between orchards, rational numbers, music, and the universe.
+featured_image: /blog/images/vineyard/Pasted%20image%2020230114180009.png
 layout: page
 date: 2023-01-14
 ---

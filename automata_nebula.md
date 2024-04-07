@@ -2,6 +2,8 @@
 math: true
 permalink: automata-nebula
 title: Digital Astronomy with Cellular Automata
+description: Exploring the emergent structure of Cellular Automata using image compression and UMAP.
+featured_image: /blog/images/automata_nebula/plots/selected_run/UMAP_CA_Full_Annotated.png
 layout: page
 date: 2020-07-21
 ---

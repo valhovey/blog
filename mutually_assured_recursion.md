@@ -2,6 +2,8 @@
 math: true
 permalink: mutually-assured-recursion
 title: Mutually Assured Recursion
+description: Could AI pose an existential risk in caricaturizing the flow of information in culture?
+featured_image: /blog/images/mutually_assured_recursion/snake_trefoil.jpg
 layout: page
 date: 2023-09-21
 ---

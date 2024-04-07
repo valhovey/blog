@@ -2,6 +2,8 @@
 math: true
 permalink: crouching-trig-hidden-fractal
 title: Crouching Trig, Hidden Fractal
+description: A surprising fractal emerges as a result of complex floating point arithmetic.
+featured_image: /blog/images/trig_fractal/first_look.png
 layout: page
 date: 2019-10-25
 ---

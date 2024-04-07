@@ -2,6 +2,8 @@
 math: true
 permalink: mathematical-blind-spots
 title: Mathematical Blind Spots
+description: Sometimes the deepest understanding lies in our most basic assumptions.
+featured_image: /blog/images/radians_and_blind_spots/title_card.png
 layout: page
 date: 2022-11-07
 ---

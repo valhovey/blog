@@ -2,6 +2,8 @@
 math: true
 permalink: the-integers-in-our-continuum
 title: The Integers In Our Continuum
+description: Could it be the case that integers are an artifact of a computational understanding of reality?
+featured_image: /blog/images/the_integers_in_our_continuum/waves_interference.jpg
 layout: page
 date: 2024-04-06
 ---

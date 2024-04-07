@@ -20,7 +20,7 @@ date: 2024-04-06
     position: absolute;
     top: 0;
     bottom: 0;
-    width: 50%; /* Cover half of the container */
+    width: 35%;
     pointer-events: none; /* Ensure clicks pass through for interactivity */
 }
 

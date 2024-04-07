@@ -263,7 +263,9 @@ Somewhere amidst the swirl of equivalent systems masquerading as independent ent
   <img id="fallbackImage" src="/blog/images/vineyard/vineyard_loop.webp" alt="Driving past vineyards"> 
 </div>
 
-<applause-button style="width: 58px; height: 58px;"/>
+<div style="display:flex;align-items:center;justify-content:center;width:100%;">
+  <applause-button style="width: 58px; height: 58px;"></applause-button>
+</div>
 
 # Afterward
 

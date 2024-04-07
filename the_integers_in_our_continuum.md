@@ -8,32 +8,36 @@ date: 2024-04-06
 
 <style>
 .video-container {
-  width: 100%;
-  position: relative;
-  display: inline-block; /* Adjust as needed */
+    position: relative;
+    display: block; /* Adjust as needed. Ensure it's not 'inline' */
+    overflow: hidden; /* Keeps pseudo-elements within the container */
+    width: 100%; /* Full width of its container */
+  clip-path: inset(1px 1px);
 }
 
 .video-container::before, .video-container::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 50px; /* Adjust the width of the fade effect */
-  pointer-events: none; /* Ensure clicks pass through */
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 50%; /* Cover half of the container */
+    pointer-events: none; /* Ensure clicks pass through for interactivity */
 }
 
 .video-container::before {
-  left: 0;
-  background: linear-gradient(to right, #fff, rgba(255,255,255,0));
+    left: 0;
+    background: linear-gradient(to right, #fff 0%, transparent 100%);
 }
 
 .video-container::after {
-  right: 0;
-  background: linear-gradient(to left, #fff, rgba(255,255,255,0));
+    right: 0;
+    background: linear-gradient(to left, #fff 0%, transparent 100%);
 }
 
 video {
-  display: block; /* To remove bottom space/margin */
+    display: block; /* Remove default margin/padding and line-height */
+    max-width: 100%; /* Ensure it scales within its container */
+    height: auto; /* Maintain aspect ratio */
 }
 </style>
 

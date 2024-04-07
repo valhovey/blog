@@ -7,7 +7,7 @@ date: 2024-04-06
 ---
 
 {:refdef: style="display:flex;align-items:center;flex-direction:column;"}
-![Wave-Like Interference Patterns](/blog/images/emergence_of_integers/Pasted image 20240406235914.png){:target="_blank"}
+![Wave-Like Interference Patterns](/blog/images/the_integers_in_our_continuum/Pasted image 20240406235914.png){:target="_blank"}
 *Wave Interference*
 {:refdef}
 
@@ -16,7 +16,7 @@ date: 2024-04-06
 Recently, I was surprised to learn that the existence of quanta is not fundamental in our current understanding of physics. David Tong, a mathematical physicist at the University of Cambridge, wrote a [thought-provoking essay](https://www.damtp.cam.ac.uk/user/tong/talks/integer.pdf){:target="_blank} elucidating this ironic nuance in our models of physics. Quantum mechanics, for instance, begins with a continuous-valued wave equation describing the evolution of a wave packet from which measurements are taken by utilizing the convenient properties of [Hilbert Spaces](https://en.wikipedia.org/wiki/Hilbert_space){:target="_blank"} to project the equation onto another continuous operator. Many versions of this wave equation can be constructed given your baseline assumptions ([Schrödinger](https://en.wikipedia.org/wiki/Schr%C3%B6dinger_equation){:target="_blank"} for non-relativistic, [Klein-Gordon](https://en.wikipedia.org/wiki/Klein%E2%80%93Gordon_equation){:target="_blank"} for relativistic effects), but they all attempt to reckon some order from a continuous phenomenon. Yet, discrete quanta are a direct consequence of studying these equations.
 
 {:refdef: style="display:flex;align-items:center;flex-direction:column;"}
-![Hydrogen wave function solutions](/blog/images/emergence_of_integers/49963063667_251bcca215_c.jpg){:target="_blank"}
+![Hydrogen wave function solutions](/blog/images/the_integers_in_our_continuum/49963063667_251bcca215_c.jpg){:target="_blank"}
 *Hydrogen wave function solutions ([source](https://www.flickr.com/photos/188522613@N05/){:target="_blank"}).*
 {:refdef}
 
@@ -29,7 +29,7 @@ When solving wave equations, we make use of apparently magical techniques such a
 # On Mathematics
 
 {:refdef: style="display:flex;align-items:center;flex-direction:column;"}
-![Riemann Zeta Function](/blog/images/emergence_of_integers/Pasted image 20240406230419.png){:target="_blank"}
+![Riemann Zeta Function](/blog/images/the_integers_in_our_continuum/Pasted image 20240406230419.png){:target="_blank"}
 *The Riemann Zeta Function, graphed ([source](https://commons.wikimedia.org/wiki/File:Zeta_polar.svg){:target="_blank"}).*
 {:refdef}
 
@@ -38,7 +38,7 @@ In a similar vein, I have always been awed and confused by the apparent divide b
 What I mean by "algebraic" is that, for much of mathematics, a little goes a long way. By defining very simple constructs such as sets and binary operations with an amount of properties you could count on one hand, we can reconcile models so powerful that they [predicted the existence of Black Holes](https://en.wikipedia.org/wiki/Black_hole#History){:target="_blank"} before we ever directly imaged one. These are powerful ideas, and yet, they are also elegant and convenient. Simple concepts such as [Eigenvalues](https://en.wikipedia.org/wiki/Eigenvalues_and_eigenvectors){:target="_blank"} combined with infinite linear operators like differentials allow us to build bridges, predict quantum systems' behavior, and even probe the dynamics of biological populations.
 
 {:refdef: style="display:flex;align-items:center;flex-direction:column;"}
-![Eigenfunction](/blog/images/emergence_of_integers/Pasted image 20240406230849.png){:target="_blank"}
+![Eigenfunction](/blog/images/the_integers_in_our_continuum/Pasted image 20240406230849.png){:target="_blank"}
 *An eigen-operator Q acting on an object Psi yields Psi again, but scaled by a factor of q.*
 {:refdef}
 
@@ -47,7 +47,7 @@ Yet, in number theory, simple questions such as "is every integer greater than \
 ## Peano Arithmetic
 
 {:refdef: style="display:flex;align-items:center;flex-direction:column;"}
-![Dominoes](/blog/images/emergence_of_integers/2801101874_ee0415c11f_c.jpg){:target="_blank"}
+![Dominoes](/blog/images/the_integers_in_our_continuum/2801101874_ee0415c11f_c.jpg){:target="_blank"}
 *Dominoes ([source](2801101874_ee0415c11f_c.jpg){:target="_blank"}).*
 {:refdef}
 
@@ -58,7 +58,7 @@ This is sufficient to construct all of the integers (denoted as \\(\mathbb{Z}\\)
 ## Church Numerals
 
 {:refdef: style="display:flex;align-items:center;flex-direction:column;"}
-![Lambda 2D](/blog/images/emergence_of_integers/Pasted image 20240406232201.png){:target="_blank"}
+![Lambda 2D](/blog/images/the_integers_in_our_continuum/Pasted image 20240406232201.png){:target="_blank"}
 *λ-2D: An artistic Lambda Calculus visual language (from [Lingdong Huang](https://www.media.mit.edu/projects/2d-an-exploration-of-drawing-as-programming-language-featuring-ideas-from-lambda-calculus/overview/){:target="_blank}).*
 {:refdef}
 
@@ -108,7 +108,7 @@ Y = \lambda f. (\lambda x. f (x x))(\lambda x. f (x x))
 Notice how the body of \\(Y\\) contains machinery that looks a lot like \\(M\\), except with an _additional call_ to \\(f\\) along the way. A good exercise is to try and reduce \\(Y f\\) and to verify that it does become \\(f (Y f)\\). In a way, the \\(Y\\) combinator is the child of Church Numerals (applying a function \\(g\\) times) and the \\(M\\) combinator (infinite regression). The \\(Y\\) combinator only supports one argument, but can easily be generalized to support an arbitrary amount of arguments.
 
 {:refdef: style="display:flex;align-items:center;flex-direction:column;"}
-![Y Combinator, Visually](/blog/images/emergence_of_integers/Pasted image 20240406225258.png){:target="_blank"}
+![Y Combinator, Visually](/blog/images/the_integers_in_our_continuum/Pasted image 20240406225258.png){:target="_blank"}
 *The Y Combinator expressed in John Tromp's [Lambda Diagrams](https://tromp.github.io/cl/diagrams.html){:target="_blank"}.*
 {:refdef}
 
@@ -117,14 +117,14 @@ Notice how the body of \\(Y\\) contains machinery that looks a lot like \\(M\\),
 Like in Peano Arithmetic and recursively enumerable formal systems, the \\(Y\\) combinator is actually an expression of [a paradox](https://en.wikipedia.org/wiki/Curry%27s_paradox). That is to say, the \\(Y\\) combinator can be used to construct absurd self-referential statements. Even before Lambda Calculus was a convention, individuals like [Bertrand Russell](https://en.wikipedia.org/wiki/Bertrand_Russell){:target="_blank"} attempted to remedy these kinds of paradoxes with a new field of mathematics called [Type Theory](https://en.wikipedia.org/wiki/Type_theory). Originally created to solve [Russel's Paradox](https://en.wikipedia.org/wiki/Russell%27s_paradox){:target="_blank"}, type theory aligns well with Lambda Calculus allowing us to endow functions with a notion of parameter and return types, along with a type for the function itself. In its most basic form, typed lambda calculus operates over the type \\(\*\\) which reads as "the set of all types" with an additional \\(\rightarrow\\) operator that allows you to construct functions over the types. For instance, \\(\* \rightarrow \*\\)  is the type of "a function from a type to a type".
 
 {:refdef: style="display:flex;align-items:center;flex-direction:column;"}
-![Pasted image 20240407000029.png](/blog/images/emergence_of_integers/Pasted image 20240407000029.png){:target="_blank"}
+![Pasted image 20240407000029.png](/blog/images/the_integers_in_our_continuum/Pasted image 20240407000029.png){:target="_blank"}
 *The Lambda Cube ([source](https://en.wikipedia.org/wiki/Lambda_cube#/media/File:Lambda_Cube_img.svg){:target="_blank"}).*
 {:refdef}
 
 In typed Lambda Calculus, it is impossible to create the \\(Y\\) combinator. The same self-reference that gives it its utility results in an Achilles' heel that results in the type signature never terminating. Still, the typed lambda calculus is incredibly useful in its own right and supports many rich operations, just not general recursion. [Many extensions can be added to the types](https://en.wikipedia.org/wiki/Lambda_cube), but until you allow for something like the \\(Y\\) combinator these systems are all [strongly normalizing](https://en.wikipedia.org/wiki/Normal_form_(abstract_rewriting)){:target="_blank"} (which means operations are guaranteed to terminate and not infinitely regress).
 
 {:refdef: style="display:flex;align-items:center;flex-direction:column;"}
-![The Haskell Logo](/blog/images/emergence_of_integers/Pasted image 20240406234316.png){:target="_blank"}
+![The Haskell Logo](/blog/images/the_integers_in_our_continuum/Pasted image 20240406234316.png){:target="_blank"}
 *Haskell's logo combines the lambda with a symbol >>= representing monadic binding.*
 {:refdef}
 
@@ -155,7 +155,7 @@ This was a watershed moment in the intersection of mathematics and computer scie
 # On The Objective Existence of Integers
 
 {:refdef: style="display:flex;align-items:center;flex-direction:column;"}
-![Ripples on an alpine lake.](/blog/images/emergence_of_integers/waves_interference.jpg){:target="_blank"}
+![Ripples on an alpine lake.](/blog/images/the_integers_in_our_continuum/waves_interference.jpg){:target="_blank"}
 *Ripples on an alpine lake.*
 {:refdef}
 
@@ -174,7 +174,7 @@ And what about the mathematics of the continuum? One may argue that [analysis](h
 Gödel's Incompleteness Theorems, Turing's Halting Problem, Cantor's Theorem on the uncountability of the reals, Russel's Paradox in set theory, the Y Combinator of Lambda Calculus, and the incompatibility of [Kolmogorov Complexity](https://en.wikipedia.org/wiki/Kolmogorov_complexity){:target="_blank"} in computational information theory are all reflections of an abstract form of reasoning called a [Diagonalization Argument](https://en.wikipedia.org/wiki/Lawvere%27s_fixed-point_theorem). It seems that everywhere we find systems capable of self-reference, inconsistency follows as a direct conclusion. Something akin to integers arises in all of these cases ([Zermelo Ordinals](https://en.wikipedia.org/wiki/Set-theoretic_definition_of_natural_numbers){:target="_blank"}, for instance), and in the case of strongly normalizing systems like typed Lambda Calculi without general recursion you can still formalize the notion of a successor and express finite integers.
 
 {:refdef: style="display:flex;align-items:center;flex-direction:column;"}
-![Screenshot from Max Cooper's Aleph 2 music video.](/blog/images/emergence_of_integers/Pasted image 20240406235526.png){:target="_blank"}
+![Screenshot from Max Cooper's Aleph 2 music video.](/blog/images/the_integers_in_our_continuum/Pasted image 20240406235526.png){:target="_blank"}
 *Cantor's Diagonal Argument from Max Cooper's [music video for his track Aleph 2](https://www.youtube.com/watch?v=tNYfqklRehM){:target="_blank"}*
 {:refdef}
 
@@ -187,7 +187,7 @@ Somewhere amidst the swirl of equivalent systems masquerading as independent ent
 I'm so interested to find an answer to the question: "what is the canonical model for computation?". I hope that, in finding this answer, we might inch closer to understanding the connection between all of these systems. [Category Theory](https://en.wikipedia.org/wiki/Category_theory){:target="_blank"} seems uniquely poised to approach this problem, and (maybe not so) coincidentally has already fueled a theory of how to make Lambda Calculus practical. It is a system of mathematics adept at looking at numerous instances of similar operations and finding the skeleton underlying them all. A popular example is [the categorical product](https://en.wikipedia.org/wiki/Product_(category_theory)){:target="_blank"} which (at first glance) seems miraculous and impossible for anyone to be so clever as to come up with it in a vacuum. That would be correct, as Category Theory is more of a meta-study of mathematics and structure itself. At times, it feels more empirical than deductive, but it is no less effective as a mathematical vehicle for truth as any other field.
 
 {:refdef: style="display:flex;align-items:center;flex-direction:column;"}
-![A Diagram conveying the Categorical Product](/blog/images/emergence_of_integers/Pasted image 20240407000156.png){:target="_blank"}
+![A Diagram conveying the Categorical Product](/blog/images/the_integers_in_our_continuum/Pasted image 20240407000156.png){:target="_blank"}
 *A diagram conveying the Categorical Product.*
 {:refdef}
 

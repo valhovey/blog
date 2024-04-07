@@ -40,7 +40,7 @@ What I mean by "algebraic" is that, for much of mathematics, a little goes a lon
 *An eigen-operator Q acting on an object Psi yields Psi again, but scaled by a factor of q.*
 {:refdef}
 
-Yet, in number theory, simple questions such as "is every integer greater than \((2\\) the sum of two prime numbers?" have been unsolved for hundreds (and in some cases, thousands) of years. We can make clever use of [Modular Arithmetic](https://en.wikipedia.org/wiki/Modular_arithmetic){:target="_blank"} along with inductive techniques to prove results in many cases, but often it is not intuitive when a given question in number theory will be easy to solve or impossible.
+Yet, in number theory, simple questions such as "is every integer greater than \\(2\\) the sum of two prime numbers?" have been unsolved for hundreds (and in some cases, thousands) of years. We can make clever use of [Modular Arithmetic](https://en.wikipedia.org/wiki/Modular_arithmetic){:target="_blank"} along with inductive techniques to prove results in many cases, but often it is not intuitive when a given question in number theory will be easy to solve or impossible.
 
 ## Peano Arithmetic
 
@@ -49,9 +49,9 @@ Yet, in number theory, simple questions such as "is every integer greater than \
 *Dominoes ([source](2801101874_ee0415c11f_c.jpg){:target="_blank"}).*
 {:refdef}
 
-What are these integers that so adeptly evade any attempt at constructing useful tools of reasoning? In their most fundamental representation, they are a construction known as [Peano Arithmetic](https://en.wikipedia.org/wiki/Peano_axioms). Like in the case of algebraic mathematics, we begin with some clever axioms: there exists a number \((0\\), and a function \((S\\) that, when fed a number, it yields the _successor_ to that number. As \((S\\) is defined from a number _to_ a number, it may be recursed. \((1\\) is representable as \((S(0)\\), \((2\\) as \((S(S(0))\\) (and so on). These axioms also introduce a notion of equality which is reflexive (that is to say that \((x = x\\)), symmetric (\((x = y \iff y = x\\)), transitive \((x = y, y = z \implies x = z\\) , and closed (meaning that if \((a \text{ is a number and } a = b \implies \text{b is a number}\\)){:target="_blank"}.
+What are these integers that so adeptly evade any attempt at constructing useful tools of reasoning? In their most fundamental representation, they are a construction known as [Peano Arithmetic](https://en.wikipedia.org/wiki/Peano_axioms). Like in the case of algebraic mathematics, we begin with some clever axioms: there exists a number \\(0\\), and a function \\(S\\) that, when fed a number, it yields the _successor_ to that number. As \\(S\\) is defined from a number _to_ a number, it may be recursed. \\(1\\) is representable as \\(S(0)\\), \\(2\\) as \\(S(S(0))\\) (and so on). These axioms also introduce a notion of equality which is reflexive (that is to say that \\(x = x\\)), symmetric (\\(x = y \iff y = x\\)), transitive \\(x = y, y = z \implies x = z\\) , and closed (meaning that if \\(a \text{ is a number and } a = b \implies \text{b is a number}\\)){:target="_blank"}.
 
-This is sufficient to construct all of the integers (denoted as \((\mathbb{Z}\\)), but it is also sufficient to limit the capabilities of mathematics. Kurt Gödel and Alan Turing independently realized that any formal system complex enough to encode the integers (called "Recursively Enumerable") is [incapable of proving its own consistency](https://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems){:target="_blank"}. Such systems are also incomplete, meaning that there are statements representable within the language of the system that cannot be proven or disproven using just the system's rules of deduction.
+This is sufficient to construct all of the integers (denoted as \\(\mathbb{Z}\\)), but it is also sufficient to limit the capabilities of mathematics. Kurt Gödel and Alan Turing independently realized that any formal system complex enough to encode the integers (called "Recursively Enumerable") is [incapable of proving its own consistency](https://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems){:target="_blank"}. Such systems are also incomplete, meaning that there are statements representable within the language of the system that cannot be proven or disproven using just the system's rules of deduction.
 
 ## Church Numerals
 
@@ -63,13 +63,13 @@ This is sufficient to construct all of the integers (denoted as \((\mathbb{Z}\\)
 Around the same time, [Alonzo Church](https://en.wikipedia.org/wiki/Alonzo_Church){:target="_blank"} had formulated [Lambda Calculus](https://en.wikipedia.org/wiki/Lambda_calculus#:~:text=Lambda%20calculus%20(also%20written%20as,to%20simulate%20any%20Turing%20machine.), an abstract model for computation that was far more elegant and easy to reason about than that of a [Turing Machine](https://en.wikipedia.org/wiki/Turing_machine){:target="_blank"}. Whereas a Turing machine expressed computation as operations over stored state with a set of instructions, Lambda Calculus took an axiomatic approach similar in spirt to Peano arithmetic.
 
 **Lambda Calculus**
-1. There exist variables, denoted by characters or strings representing a parameter or input. For example, \((x\\).
-2. There exists abstractions, denoted as \((\lambda x. M\\) which take a value as input and return some expression \((M\\) which may or may not use \((x\\).
-3. There exists application, denoted with a space \((M N\\) or "\((M\\) applied to \((N\\)" where both left and right-hand sides are lambda terms.
+1. There exist variables, denoted by characters or strings representing a parameter or input. For example, \\(x\\).
+2. There exists abstractions, denoted as \\(\lambda x. M\\) which take a value as input and return some expression \\(M\\) which may or may not use \\(x\\).
+3. There exists application, denoted with a space \\(M N\\) or "\\(M\\) applied to \\(N\\)" where both left and right-hand sides are lambda terms.
 
 While difficult (if not impossible) to construct physically without already having some other universal model of computation like a Turing Machine, Lambda Calculus expresses the same set of algorithms that can be run on a Turing Machine (or any other universal model). It was not intuitive to me, at first, how one would use such a simple system to replicate all types of computation. After all, it was far easier as a human to reason about things like numbers, lists, trees, boolean algebra, and other useful concepts in computer science on a Turing Machine which was much closer to pen and paper than this new abstract world.
 
-The easiest constructs to express in Lambda Calculus are, in fact, the integers. The same recursive construction used in Peano Arithmetic can be employed here with careful substitution to make the concept compatible with our new axioms. First, there exists a number \((0\\) read as "\((f\\) applied no times". As you might expect, the integer \((g\\) is read as "\((f\\) applied \((g\\) times":
+The easiest constructs to express in Lambda Calculus are, in fact, the integers. The same recursive construction used in Peano Arithmetic can be employed here with careful substitution to make the concept compatible with our new axioms. First, there exists a number \\(0\\) read as "\\(f\\) applied no times". As you might expect, the integer \\(g\\) is read as "\\(f\\) applied \\(g\\) times":
 
 \\[ 0 = \lambda f. \lambda x. x
 \\]

@@ -60,7 +60,7 @@ This is sufficient to construct all of the integers (denoted as \\(\mathbb{Z}\\)
 *λ-2D: An artistic Lambda Calculus visual language (from [Lingdong Huang](https://www.media.mit.edu/projects/2d-an-exploration-of-drawing-as-programming-language-featuring-ideas-from-lambda-calculus/overview/){:target="_blank}).*
 {:refdef}
 
-Around the same time, [Alonzo Church](https://en.wikipedia.org/wiki/Alonzo_Church){:target="_blank"} had formulated [Lambda Calculus](https://en.wikipedia.org/wiki/Lambda_calculus#:~:text=Lambda%20calculus%20(also%20written%20as,to%20simulate%20any%20Turing%20machine.), an abstract model for computation that was far more elegant and easy to reason about than that of a [Turing Machine](https://en.wikipedia.org/wiki/Turing_machine){:target="_blank"}. Whereas a Turing machine expressed computation as operations over stored state with a set of instructions, Lambda Calculus took an axiomatic approach similar in spirt to Peano arithmetic.
+Around the same time, [Alonzo Church](https://en.wikipedia.org/wiki/Alonzo_Church){:target="_blank"} had formulated [Lambda Calculus](https://en.wikipedia.org/wiki/Lambda_calculus){:target="_blank"}, an abstract model for computation that was far more elegant and easy to reason about than that of a [Turing Machine](https://en.wikipedia.org/wiki/Turing_machine){:target="_blank"}. Whereas a Turing machine expressed computation as operations over stored state with a set of instructions, Lambda Calculus took an axiomatic approach similar in spirt to Peano arithmetic.
 
 **Lambda Calculus**
 1. There exist variables, denoted by characters or strings representing a parameter or input. For example, \\(x\\).

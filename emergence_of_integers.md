@@ -40,7 +40,7 @@ What I mean by "algebraic" is that, for much of mathematics, a little goes a lon
 *An eigen-operator Q acting on an object Psi yields Psi again, but scaled by a factor of q.*
 {:refdef}
 
-Yet, in number theory, simple questions such as "is every integer greater than $2$ the sum of two prime numbers?" have been unsolved for hundreds (and in some cases, thousands) of years. We can make clever use of [Modular Arithmetic](https://en.wikipedia.org/wiki/Modular_arithmetic){:target="_blank"} along with inductive techniques to prove results in many cases, but often it is not intuitive when a given question in number theory will be easy to solve or impossible.
+Yet, in number theory, simple questions such as "is every integer greater than \((2\\) the sum of two prime numbers?" have been unsolved for hundreds (and in some cases, thousands) of years. We can make clever use of [Modular Arithmetic](https://en.wikipedia.org/wiki/Modular_arithmetic){:target="_blank"} along with inductive techniques to prove results in many cases, but often it is not intuitive when a given question in number theory will be easy to solve or impossible.
 
 ## Peano Arithmetic
 
@@ -49,9 +49,9 @@ Yet, in number theory, simple questions such as "is every integer greater than $
 *Dominoes ([source](2801101874_ee0415c11f_c.jpg){:target="_blank"}).*
 {:refdef}
 
-What are these integers that so adeptly evade any attempt at constructing useful tools of reasoning? In their most fundamental representation, they are a construction known as [Peano Arithmetic](https://en.wikipedia.org/wiki/Peano_axioms). Like in the case of algebraic mathematics, we begin with some clever axioms: there exists a number $0$, and a function $S$ that, when fed a number, it yields the _successor_ to that number. As $S$ is defined from a number _to_ a number, it may be recursed. $1$ is representable as $S(0)$, $2$ as $S(S(0))$ (and so on). These axioms also introduce a notion of equality which is reflexive (that is to say that $x = x$), symmetric ($x = y \iff y = x$), transitive $x = y, y = z \implies x = z$ , and closed (meaning that if $a \text{ is a number and } a = b \implies \text{b is a number}$){:target="_blank"}.
+What are these integers that so adeptly evade any attempt at constructing useful tools of reasoning? In their most fundamental representation, they are a construction known as [Peano Arithmetic](https://en.wikipedia.org/wiki/Peano_axioms). Like in the case of algebraic mathematics, we begin with some clever axioms: there exists a number \((0\\), and a function \((S\\) that, when fed a number, it yields the _successor_ to that number. As \((S\\) is defined from a number _to_ a number, it may be recursed. \((1\\) is representable as \((S(0)\\), \((2\\) as \((S(S(0))\\) (and so on). These axioms also introduce a notion of equality which is reflexive (that is to say that \((x = x\\)), symmetric (\((x = y \iff y = x\\)), transitive \((x = y, y = z \implies x = z\\) , and closed (meaning that if \((a \text{ is a number and } a = b \implies \text{b is a number}\\)){:target="_blank"}.
 
-This is sufficient to construct all of the integers (denoted as $\mathbb{Z}$), but it is also sufficient to limit the capabilities of mathematics. Kurt Gödel and Alan Turing independently realized that any formal system complex enough to encode the integers (called "Recursively Enumerable") is [incapable of proving its own consistency](https://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems){:target="_blank"}. Such systems are also incomplete, meaning that there are statements representable within the language of the system that cannot be proven or disproven using just the system's rules of deduction.
+This is sufficient to construct all of the integers (denoted as \((\mathbb{Z}\\)), but it is also sufficient to limit the capabilities of mathematics. Kurt Gödel and Alan Turing independently realized that any formal system complex enough to encode the integers (called "Recursively Enumerable") is [incapable of proving its own consistency](https://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems){:target="_blank"}. Such systems are also incomplete, meaning that there are statements representable within the language of the system that cannot be proven or disproven using just the system's rules of deduction.
 
 ## Church Numerals
 
@@ -63,52 +63,47 @@ This is sufficient to construct all of the integers (denoted as $\mathbb{Z}$), b
 Around the same time, [Alonzo Church](https://en.wikipedia.org/wiki/Alonzo_Church){:target="_blank"} had formulated [Lambda Calculus](https://en.wikipedia.org/wiki/Lambda_calculus#:~:text=Lambda%20calculus%20(also%20written%20as,to%20simulate%20any%20Turing%20machine.), an abstract model for computation that was far more elegant and easy to reason about than that of a [Turing Machine](https://en.wikipedia.org/wiki/Turing_machine){:target="_blank"}. Whereas a Turing machine expressed computation as operations over stored state with a set of instructions, Lambda Calculus took an axiomatic approach similar in spirt to Peano arithmetic.
 
 **Lambda Calculus**
-1. There exist variables, denoted by characters or strings representing a parameter or input. For example, $x$.
-2. There exists abstractions, denoted as $\lambda x. M$ which take a value as input and return some expression $M$ which may or may not use $x$.
-3. There exists application, denoted with a space $M N$ or "$M$ applied to $N$" where both left and right-hand sides are lambda terms.
+1. There exist variables, denoted by characters or strings representing a parameter or input. For example, \((x\\).
+2. There exists abstractions, denoted as \((\lambda x. M\\) which take a value as input and return some expression \((M\\) which may or may not use \((x\\).
+3. There exists application, denoted with a space \((M N\\) or "\((M\\) applied to \((N\\)" where both left and right-hand sides are lambda terms.
 
 While difficult (if not impossible) to construct physically without already having some other universal model of computation like a Turing Machine, Lambda Calculus expresses the same set of algorithms that can be run on a Turing Machine (or any other universal model). It was not intuitive to me, at first, how one would use such a simple system to replicate all types of computation. After all, it was far easier as a human to reason about things like numbers, lists, trees, boolean algebra, and other useful concepts in computer science on a Turing Machine which was much closer to pen and paper than this new abstract world.
 
-The easiest constructs to express in Lambda Calculus are, in fact, the integers. The same recursive construction used in Peano Arithmetic can be employed here with careful substitution to make the concept compatible with our new axioms. First, there exists a number $0$ read as "$f$ applied no times". As you might expect, the integer $g$ is read as "$f$ applied $g$ times":
+The easiest constructs to express in Lambda Calculus are, in fact, the integers. The same recursive construction used in Peano Arithmetic can be employed here with careful substitution to make the concept compatible with our new axioms. First, there exists a number \((0\\) read as "\((f\\) applied no times". As you might expect, the integer \((g\\) is read as "\((f\\) applied \((g\\) times":
 
-$$
-0 = \lambda f. \lambda x. x
-$$
-$$
-1 = \lambda f. \lambda x. f x \\
-$$
-$$
-2 = \lambda f. \lambda x. f (f x) \\
-$$
-$$
-3 = \lambda f. \lambda x. f (f (f x))
-$$
+\\[ 0 = \lambda f. \lambda x. x
+\\]
+\\[ 1 = \lambda f. \lambda x. f x \\
+\\]
+\\[ 2 = \lambda f. \lambda x. f (f x) \\
+\\]
+\\[ 3 = \lambda f. \lambda x. f (f (f x))
+\\]
 
-Then, a successor function $S$ can be represented as "the machinery that takes a number $g$ and yields a new number $g'$ that applies $f$ one more time than $g$".
+Then, a successor function \\(S\\) can be represented as "the machinery that takes a number \\(g\\) and yields a new number \\(g'\\) that applies \\(f\\) one more time than \\(g\\)".
 
-$$
-S = \lambda g. \lambda f. \lambda x. f(g f x)
-$$
+\\[ S = \lambda g. \lambda f. \lambda x. f(g f x)
+\\]
 
-I've used $g$ here to denote the number instead of $n$ because, when thinking about Lambda Calculus, it is easy to forget that everything is a function (including these numbers we are defining). $g$ is indeed a "number", but in this universe numbers apply operations that many times. This explanation is likely sufficient for this post, but you can take this as far as you would like and define the normal operations over integers such as addition ($m + n = \lambda m. \lambda n. \lambda f. \lambda x. m f (n f x))$), subtraction, and multiplication.
+I've used \\(g\\) here to denote the number instead of \\(n\\) because, when thinking about Lambda Calculus, it is easy to forget that everything is a function (including these numbers we are defining). \\(g\\) is indeed a "number", but in this universe numbers apply operations that many times. This explanation is likely sufficient for this post, but you can take this as far as you would like and define the normal operations over integers such as addition (\\(m + n = \lambda m. \lambda n. \lambda f. \lambda x. m f (n f x))\\)), subtraction, and multiplication.
 
-[Church Numerals](https://en.wikipedia.org/wiki/Church_encoding){:target="_blank"} alone are a powerful construction, but repeated application is not sufficient if we wish to create a universal system equivalent to a Turing Machine. For that, we need to shim a concept of iteration called [General Recursion](https://en.wikipedia.org/wiki/General_recursive_function). Ordinary recursion is fairly simple in Lambda Calculus, allowing for infinite regress as easily as $M = \lambda f. f f$ (also known as the $M$ combinator){:target="_blank"}. When fed itself, it becomes itself.
+[Church Numerals](https://en.wikipedia.org/wiki/Church_encoding){:target="_blank"} alone are a powerful construction, but repeated application is not sufficient if we wish to create a universal system equivalent to a Turing Machine. For that, we need to shim a concept of iteration called [General Recursion](https://en.wikipedia.org/wiki/General_recursive_function). Ordinary recursion is fairly simple in Lambda Calculus, allowing for infinite regress as easily as \\(M = \lambda f. f f\\) (also known as the \\(M\\) combinator){:target="_blank"}. When fed itself, it becomes itself.
 
-$$
-(\lambda f. f f)(\lambda f. f f) = (\lambda f. f f)(\lambda f. f f)
-$$
-As you might guess, while a neat party trick, this does not allow us to create anything useful computationally. We need a piece of machinery that can take a function, and pass it _to itself_ somehow. After all, if a function has access to itself then it may call itself which is our current goal. The $M$ combinator gets us so close, we only need:
+\\[ (\lambda f. f f)(\lambda f. f f) = (\lambda f. f f)(\lambda f. f f)
+\\]
 
-1. A way of passing in a function $f$ that (somehow) takes itself as a parameter
+As you might guess, while a neat party trick, this does not allow us to create anything useful computationally. We need a piece of machinery that can take a function, and pass it _to itself_ somehow. After all, if a function has access to itself then it may call itself which is our current goal. The \\(M\\) combinator gets us so close, we only need:
+
+1. A way of passing in a function \\(f\\) that (somehow) takes itself as a parameter
 2. Some way of terminating the infinite regress
 
-In other words, we need a function $Y$ that has the unique property $Y f = f (Y f)$. This would imply that $Y$ passes $f$ to itself somehow, and since $f$ is passed this value it can choose whether or not to call it (giving the option for termination). This is the famous [Y Combinator](https://en.wikipedia.org/wiki/Fixed-point_combinator){:target="_blank"}:
+In other words, we need a function \\(Y\\) that has the unique property \\(Y f = f (Y f)\\). This would imply that \\(Y\\) passes \\(f\\) to itself somehow, and since \\(f\\) is passed this value it can choose whether or not to call it (giving the option for termination). This is the famous [Y Combinator](https://en.wikipedia.org/wiki/Fixed-point_combinator){:target="_blank"}:
 
-$$
+\\[
 Y = \lambda f. (\lambda x. f (x x))(\lambda x. f (x x))
-$$
+\\]
 
-Notice how the body of $Y$ contains machinery that looks a lot like $M$, except with an _additional call_ to $f$ along the way. A good exercise is to try and reduce $Y f$ and to verify that it does become $f (Y f)$. In a way, the $Y$ combinator is the child of Church Numerals (applying a function $g$ times) and the $M$ combinator (infinite regression). The $Y$ combinator only supports one argument, but can easily be generalized to support an arbitrary amount of arguments.
+Notice how the body of \\(Y\\) contains machinery that looks a lot like \\(M\\), except with an _additional call_ to \\(f\\) along the way. A good exercise is to try and reduce \\(Y f\\) and to verify that it does become \\(f (Y f)\\). In a way, the \\(Y\\) combinator is the child of Church Numerals (applying a function \\(g\\) times) and the \\(M\\) combinator (infinite regression). The \\(Y\\) combinator only supports one argument, but can easily be generalized to support an arbitrary amount of arguments.
 
 {:refdef: style="display:flex;align-items:center;flex-direction:column;"}
 ![Y Combinator, Visually](/blog/images/emergence_of_integers/Pasted image 20240406225258.png){:target="_blank"}
@@ -117,27 +112,27 @@ Notice how the body of $Y$ contains machinery that looks a lot like $M$, except 
 
 ## Type Theory
 
-Like in Peano Arithmetic and recursively enumerable formal systems, the $Y$ combinator is actually an expression of [a paradox](https://en.wikipedia.org/wiki/Curry%27s_paradox). That is to say, the $Y$ combinator can be used to construct absurd self-referential statements. Even before Lambda Calculus was a convention, individuals like [Bertrand Russell](https://en.wikipedia.org/wiki/Bertrand_Russell){:target="_blank"} attempted to remedy these kinds of paradoxes with a new field of mathematics called [Type Theory](https://en.wikipedia.org/wiki/Type_theory). Originally created to solve [Russel's Paradox](https://en.wikipedia.org/wiki/Russell%27s_paradox){:target="_blank"}, type theory aligns well with Lambda Calculus allowing us to endow functions with a notion of parameter and return types, along with a type for the function itself. In its most basic form, typed lambda calculus operates over the type $*$ which reads as "the set of all types" with an additional $\rightarrow$ operator that allows you to construct functions over the types. For instance, $* \rightarrow *$  is the type of "a function from a type to a type".
+Like in Peano Arithmetic and recursively enumerable formal systems, the \\(Y\\) combinator is actually an expression of [a paradox](https://en.wikipedia.org/wiki/Curry%27s_paradox). That is to say, the \\(Y\\) combinator can be used to construct absurd self-referential statements. Even before Lambda Calculus was a convention, individuals like [Bertrand Russell](https://en.wikipedia.org/wiki/Bertrand_Russell){:target="_blank"} attempted to remedy these kinds of paradoxes with a new field of mathematics called [Type Theory](https://en.wikipedia.org/wiki/Type_theory). Originally created to solve [Russel's Paradox](https://en.wikipedia.org/wiki/Russell%27s_paradox){:target="_blank"}, type theory aligns well with Lambda Calculus allowing us to endow functions with a notion of parameter and return types, along with a type for the function itself. In its most basic form, typed lambda calculus operates over the type \\(*\\) which reads as "the set of all types" with an additional \\(\rightarrow\\) operator that allows you to construct functions over the types. For instance, \\(* \rightarrow *\\)  is the type of "a function from a type to a type".
 
 {:refdef: style="display:flex;align-items:center;flex-direction:column;"}
 ![Pasted image 20240407000029.png](/blog/images/emergence_of_integers/Pasted image 20240407000029.png){:target="_blank"}
 *The Lambda Cube ([source](https://en.wikipedia.org/wiki/Lambda_cube#/media/File:Lambda_Cube_img.svg){:target="_blank"}).*
 {:refdef}
 
-In typed Lambda Calculus, it is impossible to create the $Y$ combinator. The same self-reference that gives it its utility results in an Achilles' heel that results in the type signature never terminating. Still, the typed lambda calculus is incredibly useful in its own right and supports many rich operations, just not general recursion. [Many extensions can be added to the types](https://en.wikipedia.org/wiki/Lambda_cube), but until you allow for something like the $Y$ combinator these systems are all [strongly normalizing](https://en.wikipedia.org/wiki/Normal_form_(abstract_rewriting)) (which means operations are guaranteed to terminate and not infinitely regress){:target="_blank"}.
+In typed Lambda Calculus, it is impossible to create the \\(Y\\) combinator. The same self-reference that gives it its utility results in an Achilles' heel that results in the type signature never terminating. Still, the typed lambda calculus is incredibly useful in its own right and supports many rich operations, just not general recursion. [Many extensions can be added to the types](https://en.wikipedia.org/wiki/Lambda_cube), but until you allow for something like the \\(Y\\) combinator these systems are all [strongly normalizing](https://en.wikipedia.org/wiki/Normal_form_(abstract_rewriting)) (which means operations are guaranteed to terminate and not infinitely regress){:target="_blank"}.
 
 {:refdef: style="display:flex;align-items:center;flex-direction:column;"}
 ![The Haskell Logo](/blog/images/emergence_of_integers/Pasted image 20240406234316.png){:target="_blank"}
 *Haskell's logo combines the lambda with a symbol >>= representing monadic binding.*
 {:refdef}
 
-Second-order typed Lambda Calculus (also romantically called $\lambda_2$), which extends the simply typed Lambda Calculus with polymorphism, is what modern languages like [Haskell](https://en.wikipedia.org/wiki/Haskell){:target="_blank"} are built on top of. But, if $\lambda_2$ is only strongly normalizing and cannot express general recursion, how is it a useful programming language? We throw our hands up into the air and introduce a familiar function which is the seed that sets Haskell into motion:
+Second-order typed Lambda Calculus (also romantically called \\(\lambda_2\\)), which extends the simply typed Lambda Calculus with polymorphism, is what modern languages like [Haskell](https://en.wikipedia.org/wiki/Haskell){:target="_blank"} are built on top of. But, if \\(\lambda_2\\) is only strongly normalizing and cannot express general recursion, how is it a useful programming language? We throw our hands up into the air and introduce a familiar function which is the seed that sets Haskell into motion:
 
 ```
 fix f = f (fix f)
 ```
 
-This is the $Y$ combinator expressed in Haskell, where instead of relying on lambda terms we use the language's ability to allow functions to reference themselves in their definitions. This is not as elegant as the $Y$ combinator, but just as powerful and it means that many properties about languages like Haskell are actually [Undecidable](https://en.wikipedia.org/wiki/Undecidable_problem){:target="_blank"} (behaving just like the systems discussed in Gödel's proofs){:target="_blank"}.
+This is the \\(Y\\) combinator expressed in Haskell, where instead of relying on lambda terms we use the language's ability to allow functions to reference themselves in their definitions. This is not as elegant as the \\(Y\\) combinator, but just as powerful and it means that many properties about languages like Haskell are actually [Undecidable](https://en.wikipedia.org/wiki/Undecidable_problem){:target="_blank"} (behaving just like the systems discussed in Gödel's proofs){:target="_blank"}.
 
 ## Curry-Howard Isomorphism
 
@@ -147,13 +142,13 @@ As a caveat, this only works in general for provably finite algorithms (as is th
 
 When proving the correspondence, it is far more convenient to use [SKI Calculus](https://en.wikipedia.org/wiki/SKI_combinator_calculus){:target="_blank"} rather than raw Lambda Calculus. As in the case with physical computational models of Turing Machines, there are [many equivalent formulations](https://en.wikipedia.org/wiki/Functional_completeness){:target="_blank"} that produce the result we want. A computer may be constructed from NOR, NAND, or other combinations of gates and still have the same emergent properties. SKI calculus introduces three combinators:
 
-1. $S = \lambda x. \lambda y. \lambda z. xz(yz)$ (substitution)
-2. $K = \lambda x. \lambda y. x$ (truth)
-3. $I = \lambda x. x$ (identity)
+1. \\(S = \lambda x. \lambda y. \lambda z. xz(yz)\\) (substitution)
+2. \\(K = \lambda x. \lambda y. x\\) (truth)
+3. \\(I = \lambda x. x\\) (identity)
 
-The $S$ combinator in particular is difficult to understand at first, but it represents a concept known as [Modus Ponens](https://en.wikipedia.org/wiki/Modus_ponens){:target="_blank"} in propositional logic. This is the step in theorem proving when you apply some piece of knowledge you have to an expression you already have. A very simple example is that the identity combinator $I$ [can be "proven"](https://en.wikipedia.org/wiki/Curry%E2%80%93Howard_correspondence#The_identity_combinator_seen_as_a_proof_of_%CE%B1_%E2%86%92_%CE%B1_in_Hilbert-style_logic){:target="_blank"} by applying the $S$ to $K$ twice ($I = (S K) K$){:target="_blank"}. As usual, propositional logic proves difficult to follow but the key takeaway is that $S$ and $K$ represent the most fundamental operations in theorem proving, identifying that all proofs are actually programs.
+The \\(S\\) combinator in particular is difficult to understand at first, but it represents a concept known as [Modus Ponens](https://en.wikipedia.org/wiki/Modus_ponens){:target="_blank"} in propositional logic. This is the step in theorem proving when you apply some piece of knowledge you have to an expression you already have. A very simple example is that the identity combinator \\(I\\) [can be "proven"](https://en.wikipedia.org/wiki/Curry%E2%80%93Howard_correspondence#The_identity_combinator_seen_as_a_proof_of_%CE%B1_%E2%86%92_%CE%B1_in_Hilbert-style_logic){:target="_blank"} by applying the \\(S\\) to \\(K\\) twice (\\(I = (S K) K\\)){:target="_blank"}. As usual, propositional logic proves difficult to follow but the key takeaway is that \\(S\\) and \\(K\\) represent the most fundamental operations in theorem proving, identifying that all proofs are actually programs.
 
-This was a watershed moment in the intersection of mathematics and computer science, allowing for mathematical theorem proving software. In particular, a specific typed lambda calculus $\lambda_C$ that allows for both dependent typing and type operators in addition to the polymorphism of $\lambda_2$ is the basis of the [Coq](https://en.wikipedia.org/wiki/Coq_(software)){:target="_blank"} theorem proving software. As you may have inferred, Coq is not a Turing Complete language but is still remarkably useful when we want to computationally verify mathematical proofs.
+This was a watershed moment in the intersection of mathematics and computer science, allowing for mathematical theorem proving software. In particular, a specific typed lambda calculus \\(\lambda_C\\) that allows for both dependent typing and type operators in addition to the polymorphism of \\(\lambda_2\\) is the basis of the [Coq](https://en.wikipedia.org/wiki/Coq_(software)){:target="_blank"} theorem proving software. As you may have inferred, Coq is not a Turing Complete language but is still remarkably useful when we want to computationally verify mathematical proofs.
 
 # On The Objective Existence of Integers
 

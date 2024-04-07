@@ -6,6 +6,37 @@ layout: page
 date: 2024-04-06
 ---
 
+<style>
+.video-container {
+  width: 100%;
+  position: relative;
+  display: inline-block; /* Adjust as needed */
+}
+
+.video-container::before, .video-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50px; /* Adjust the width of the fade effect */
+  pointer-events: none; /* Ensure clicks pass through */
+}
+
+.video-container::before {
+  left: 0;
+  background: linear-gradient(to right, #fff, rgba(255,255,255,0));
+}
+
+.video-container::after {
+  right: 0;
+  background: linear-gradient(to left, #fff, rgba(255,255,255,0));
+}
+
+video {
+  display: block; /* To remove bottom space/margin */
+}
+</style>
+
 {:refdef: style="display:flex;align-items:center;flex-direction:column;"}
 ![Wave-Like Interference Patterns](/blog/images/the_integers_in_our_continuum/Pasted image 20240406235914.png){:target="_blank"}
 *Wave Interference*
@@ -181,11 +212,12 @@ Gödel's Incompleteness Theorems, Turing's Halting Problem, Cantor's Theorem on 
 To me, it seems natural to accept that our reality is fundamentally continuous in some way. Wave-like phenomenon exhibit periodicity, which is a kind of temporal quantization, but not in any objective way. In the same way that we have stared in vain at the structure of the prime numbers for thousands of years unable to explain their structure, yet freely admitting that they have it, I wonder if a search for a [theory of everything](https://en.wikipedia.org/wiki/Theory_of_everything){:target="_blank"} in physics may prove fruitless. By all means, this does not mean that we should stop, but as in the case of [Principia Mathematica](https://en.wikipedia.org/wiki/Principia_Mathematica){:target="_blank"} being motivated by trying to axiomatically derive all of mathematics only to be proven impossible to do by Gödel, maybe we need to re-think our approach and start thinking outside of our systems to see what they are actually capable of.
 
 Somewhere amidst the swirl of equivalent systems masquerading as independent entities, we may find a unifying pattern that is representative of the space of understandings that humans (and conscious entities) can possibly have. At the other side of that endeavor, we may stare into the mesmerizing patterns in an orchard [that connect to so many things](https://kylehovey.github.io/blog/on-vineyards-harmony-and-mathematics){:target="_blank"} and find what we see to be an abstract reflection of ourselves, and us a reflection of it.
-
-<video loop autoplay muted>
-  <source src="/blog/images/the_integers_in_our_continuum/farey.webm" type="video/webm">
-  Your browser does not support the video tag.
-</video>
+<div class="video-container">
+  <video loop autoplay muted class="video-container">
+    <source src="/blog/images/the_integers_in_our_continuum/farey.webm" type="video/webm">
+    Your browser does not support the video tag.
+  </video>
+</div>
 
 # Afterward
 

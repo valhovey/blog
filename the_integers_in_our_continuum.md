@@ -218,9 +218,9 @@ As a caveat, this only works in general for provably finite algorithms (as is th
 
 When proving the correspondence, it is far more convenient to use [SKI Calculus](https://en.wikipedia.org/wiki/SKI_combinator_calculus){:target="_blank"} rather than raw Lambda Calculus. As in the case with physical computational models of Turing Machines, there are [many equivalent formulations](https://en.wikipedia.org/wiki/Functional_completeness){:target="_blank"} that produce the result we want. A computer may be constructed from NOR, NAND, or other combinations of gates and still have the same emergent properties. SKI calculus introduces three combinators that can be used to construct any Lambda expression:
 
-1. \\(S = \lambda x. \lambda y. \lambda z. xz(yz)\\) (substitution)
-2. \\(K = \lambda x. \lambda y. x\\) (truth)
-3. \\(I = \lambda x. x\\) (identity)
+1. \\(S = \lambda x. \lambda y. \lambda z. xz(yz) \rightarrow\\) substitution
+2. \\(K = \lambda x. \lambda y. x \rightarrow\\) truth
+3. \\(I = \lambda x. x \rightarrow\\) identity
 
 The \\(S\\) combinator in particular is difficult to understand at first, but it represents a concept known as [Modus Ponens](https://en.wikipedia.org/wiki/Modus_ponens){:target="_blank"} in propositional logic. This is the step in theorem proving when you apply some piece of knowledge you have to an expression you already have. A very simple example is that the identity combinator \\(I\\) [can be "proven"](https://en.wikipedia.org/wiki/Curry%E2%80%93Howard_correspondence#The_identity_combinator_seen_as_a_proof_of_%CE%B1_%E2%86%92_%CE%B1_in_Hilbert-style_logic){:target="_blank"} by applying the \\(S\\) to \\(K\\) twice (\\(I = (S K) K\\)). As usual, propositional logic proves difficult to follow but the key takeaway is that \\(S\\) and \\(K\\) represent the most fundamental operations in theorem proving, identifying that all proofs are actually programs.
 

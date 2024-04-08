@@ -23,7 +23,3 @@ Welcome to my Blog! I am a Computational Mathematics graduate from Utah State Un
 
 ## [Crouching Tiger, Hidden Fractal](./crouching-trig-hidden-fractal)
 [![Crouching Tiger, Hidden Fractal](/blog/images/trig_fractal/first_look.png)](./crouching-trig-hidden-fractal)
-
----
-
-<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.

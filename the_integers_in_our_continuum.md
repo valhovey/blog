@@ -179,7 +179,7 @@ In other words, we need a function \\(Y\\) that has the unique property \\(Y f =
 Y = \lambda f. (\lambda x. f (x x))(\lambda x. f (x x))
 \\]
 
-Notice how the body of \\(Y\\) contains machinery that looks a lot like \\(M\\), except with an _additional call_ to \\(f\\) along the way. A good exercise is to try and reduce \\(Y f\\) and to verify that it does become \\(f (Y f)\\). In a way, the \\(Y\\) combinator is the child of Church Numerals (applying a function \\(g\\) times) and the \\(M\\) combinator (infinite regression). The \\(Y\\) combinator only supports one argument, but can easily be generalized to support an arbitrary amount of arguments.
+Notice how the body of \\(Y\\) contains machinery that looks a lot like \\(M\\), except with an _additional call_ to \\(f\\) along the way. A good exercise is to try and reduce \\(Y f\\) and to verify that it does become \\(f (Y f)\\). In a way, the \\(Y\\) combinator is the child of Church Numerals (applying a function \\(g\\) times) and the \\(M\\) combinator (self-application). The \\(Y\\) combinator only supports one argument, but can easily be generalized to support an arbitrary amount of arguments.
 
 {:refdef: style="display:flex;align-items:center;flex-direction:column;"}
 ![Y Combinator, Visually](/blog/images/the_integers_in_our_continuum/Pasted image 20240406225258.png){:target="_blank"}

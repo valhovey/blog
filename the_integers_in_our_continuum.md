@@ -76,8 +76,8 @@ document.addEventListener('DOMContentLoaded', function () {
 </script>
 
 {:refdef: style="display:flex;align-items:center;flex-direction:column;"}
-![Wave-Like Interference Patterns](/blog/images/the_integers_in_our_continuum/Pasted image 20240406235914.png){:target="_blank"}
-*Wave Interference*
+![Water ripples creating a representation of Zermelo integers.](/blog/images/the_integers_in_our_continuum/integer_ripples.jpg)
+*Artwork by my good friend [Sophia Wood](https://fractalkitty.com/)*
 {:refdef}
 
 # On Physics

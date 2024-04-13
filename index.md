@@ -6,6 +6,9 @@ title: Welcome
 
 Welcome to my Blog! I am a Computational Mathematics graduate from Utah State University. I grew up in the foothills of California, nestled between Tahoe and Yosemite. I am happiest when trudging up a fresh trail or starting up a new hobby.
 
+## [The Integers In Our Continuum](./the-integers-in-our-continuum)
+[![The Integers In Our Continuum](/blog/images/the_integers_in_our_continuum/integer_ripples.jpg)](./the-integers-in-our-continuum)
+
 ## [Mutually Assured Recursion](./mutually-assured-recursion)
 [![Mutually Assured Recursion](/blog/images/mutually_assured_recursion/snake_trefoil.jpg)](./mutually-assured-recursion)
 

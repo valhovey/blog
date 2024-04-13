@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', function () {
 </script>
 
 {:refdef: style="display:flex;align-items:center;flex-direction:column;"}
-![Water ripples creating a representation of Zermelo integers.](/blog/images/the_integers_in_our_continuum/integer_ripples.jpg)
+![Water ripples creating a representation of Von Neumann integers.](/blog/images/the_integers_in_our_continuum/integer_ripples.jpg)
 *Artwork by my good friend [Sophia Wood](https://fractalkitty.com/)*
 {:refdef}
 

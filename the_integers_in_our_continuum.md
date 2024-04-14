@@ -9,6 +9,13 @@ date: 2024-04-06
 ---
 
 <style>
+.hn-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 16px;
+}
+
 .video-container {
     position: relative;
     display: block; /* Adjust as needed. Ensure it's not 'inline' */
@@ -275,3 +282,7 @@ I'm so interested to find an answer to the question: "what is the canonical mode
 At its heart, Category Theory seeks to find "the most general" form for a given abstraction, which often takes the form of a [Universal Property](https://en.wikipedia.org/wiki/Universal_property){:target="_blank"}. It reminds me of [Hamiltonian](https://en.wikipedia.org/wiki/Hamiltonian_mechanics){:target="_blank"} and [Lagrangian](https://en.wikipedia.org/wiki/Lagrangian_mechanics){:target="_blank"} mechanics where a system can be fully characterized by its desire to be in the minimal state of some measure (energy, in the case of the Hamiltonian). Something about the fundamental behavior of our universe seeks to find the shortest path to the lowest point of any space. If [information is truly physical](https://en.wikipedia.org/wiki/Entropy_in_thermodynamics_and_information_theory#Information_is_physical){:target="_blank"}, and it very well could be (remember that the [Bekenstein Bound](https://en.wikipedia.org/wiki/Bekenstein_bound){:target="_blank"} lies at the heart of the holographic principle), it might make sense how so many of our most powerful results in math are [the most elegant ones](https://en.wikipedia.org/wiki/Mathematical_beauty){:target="_blank"}. In my last post, I talked about how information compression is [analogous to artificial intelligence](https://en.wikipedia.org/wiki/Hutter_Prize){:target="_blank"}. Maybe the most abstract form of computation comes as a dimensionality minimization attempting to find the [latent manifold](https://en.wikipedia.org/wiki/Manifold_hypothesis){:target="_blank"} information truly lies on. This kind of mechanism would be biologically adventitious as it would yield compact and efficient representations of incoming information that would be highly correlated with the global information landscape an individual was embedded in. Will our search for a canonical model for computation merge with our attempt to understand intelligence?
 
 Where Category Theory could potentially reconcile a concrete understanding from all of this hand waving by characterizing the ingredients of such a system. This would hopefully make it more obvious where to search for how such systems physically manifest themselves in our universe.
+
+<div class="hn-link">
+  <a href="https://news.ycombinator.com/item?id=40030259" target="_blank" rel="noopener noreferrer">Discuss On Hacker News</a>
+</div>

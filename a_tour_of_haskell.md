@@ -82,12 +82,12 @@ Even though functions of multiple arguments are really nested functions, the syn
 quadratic a b c x = a + b*x + c*x^2
 
 let polynomial = quadratic 1 2 3
-	-- The coefficients have been closed over, now we can call
-	-- the quadratic with the remaining value. This pattern of
-	-- placing parameters first and the input last is called
-	-- "data-last" and is useful in curried languages.
-	atZero = polynomial 0 -- 1
-	atFour = polynomial 4 -- 57
+    -- The coefficients have been closed over, now we can call
+    -- the quadratic with the remaining value. This pattern of
+    -- placing parameters first and the input last is called
+    -- "data-last" and is useful in curried languages.
+    atZero = polynomial 0 -- 1
+    atFour = polynomial 4 -- 57
 {% endhighlight %}
 
 One more useful piece of syntax is lambdas, which let you define functions in-place wherever you need them.
@@ -140,11 +140,11 @@ On the left, we have the type we are creating (`Theme`). On the right are data c
 
 {% highlight Haskell %}
 data NotificationPreference
-	= DoNotNotify
-	| NotifyIntervalDays Int
-	| NotifyIntervalMonths Int
-	-- ^ This is Haskell style formatting for multi-line
-	--   syntax. Separator first, then value.
+  = DoNotNotify
+  | NotifyIntervalDays Int
+  | NotifyIntervalMonths Int
+  -- ^ This is Haskell style formatting for multi-line
+  --   syntax. Separator first, then value.
 
 let annoyingNotifications = NotifyIntervalDays 1
 {% endhighlight %}
@@ -153,10 +153,10 @@ The type itself is also a function, surprisingly enough. In the above example, `
 
 {% highlight Haskell %}
 data UserInput a
-	= FromKeyboard a
-	| FromTextToSpeech a
-	| FromSiameseTwins a a
-	| FromMindControl a
+  = FromKeyboard a
+  | FromTextToSpeech a
+  | FromSiameseTwins a a
+  | FromMindControl a
 
 -- `a` is saturated with `Int`, producing `UserInput Int`
 let userValue = FromKeyboard 5
@@ -181,9 +181,11 @@ This minimally represents a value that may be present, or absent.
 Product types are even simpler, and their name also comes from the algebraic origins of this type system. In practice, they are just groupings of values of different types.
 
 {% highlight Haskell %}
-type UserNameAndAge = (String, Int) -- ("Leeroy Jenkins", 29)
+type UserNameAndAge = (String, Int)
+        -- ("Leeroy Jenkins", 29)
 				--    ^ a "product" of `String` and `Int`
-     Color = (Int, Int, Int) -- e.g. (255, 0, 255) for purple
+
+type Color = (Int, Int, Int) -- e.g. (255, 0, 255) for purple
 {% endhighlight %}
 
 You can keep adding more types to the product until you get abominations like `(Int, String, Bool, Int, Int, String)` but at a certain point it makes more sense to use the next type construct in Haskell.
@@ -203,12 +205,12 @@ data Address = Address
  -- but actually sane.
 
 let myAddress = Address
-		{ address = "42"
-		, street = "Wallaby Way"
-		, city = "Sydney"
-		, zipCode = 12345
-		}
-	myCity = city myAddress
+      { address = "42"
+      , street = "Wallaby Way"
+      , city = "Sydney"
+      , zipCode = 12345
+      }
+    myCity = city myAddress
 {% endhighlight %}
 
 ### Pattern Matching
@@ -227,18 +229,18 @@ fib n = fib (n - 1) + fib (n - 2)
 -- Alternatively, you can case match
 fib n :: a -> a
 fib n = case n of
-	1 -> 1
-	2 -> 1
-	_ -> fib (n - 1) + fib (n - 2)
+  1 -> 1
+  2 -> 1
+  _ -> fib (n - 1) + fib (n - 2)
 
 -- This extends to branches of types as well
 data ListIndex = ZeroBased Int | OneBased Int
 
 toZeroBased :: ListIndex -> Int
 toZeroBased listIndex = case listIndex of
-	-- On the left-hand side, x is bound to the value in the leaf
-	ZeroBased x -> x
-	OneBased x -> x - 1
+  -- On the left-hand side, x is bound to the value in the leaf
+  ZeroBased x -> x
+  OneBased x -> x - 1
 {% endhighlight %}
 
 There are so many more ways this pattern may be used, but this is probably enough to continue our path.
@@ -255,15 +257,15 @@ data List a = [] | a : List a
 -- `:` is an infix data constructor. In Haskell, we can
 -- change infix to prefix using backticks if we want:
      List a
-	     = []
-	     | `:` a (List a)
+       = []
+       | `:` a (List a)
 
 -- Alternatively, if it helps, we can avoid infix to show
 -- how `List a` is defined using no new concepts:
 
 data MyList a
-	= EmptyList
-	| Joined a (MyList a)
+  = EmptyList
+  | Joined a (MyList a)
 {% endhighlight %}
 
 We can follow this same pattern for trees, matrices, or any other structures we want to represent.
@@ -276,13 +278,13 @@ So far we have used types to describe values, but we haven't covered that weird 
 
 {% highlight Haskell %}
 class Num a where
-	(+), (-), (*)       :: a -> a -> a
-	negate              :: a -> a
-	abs                 :: a -> a
-	signum              :: a -> a
-	fromInteger         :: Integer -> a
-	x - y               = x + negate y
-	negate x            = 0 - x
+  (+), (-), (*)       :: a -> a -> a
+  negate              :: a -> a
+  abs                 :: a -> a
+  signum              :: a -> a
+  fromInteger         :: Integer -> a
+  x - y               = x + negate y
+  negate x            = 0 - x
 {% endhighlight %}
 
 There is a lot going on here in the typeclass, but abstractly we are informing the compiler how a given value can be treated as a number. When we write a function definition, we can use this typeclass as a constraint on our type to support using all of the contents of the typeclass inside of our function.
@@ -310,7 +312,7 @@ So, how are typeclasses different than those other forms of generics or polymorp
 
 {% highlight Haskell %}
 class Summable s where
-	getSum :: s a -> a
+  getSum :: s a -> a
 {% endhighlight %} 
 
 The nuance here is subtle. At first glance, this looks like a generic or a method overload, but notice how our type `s` being constrained is actually being called with a type argument in `getSum` as `s a`. In other words, `s` is a higher kinded type (a function of types). If you were to try and define `Summable<s>` in Typescript then have some `s<a>` in the definition, the compiler would explode. Type arguments are final, and cannot accept more type arguments. In another word, generics are not composable in this way, and so you cannot make assertions about types like this in any language that does not support higher kinded types such as Haskell.
@@ -345,7 +347,7 @@ timesTwo x = 2 * x
 -- ^ Take a function `f` and apply it to an argument
 
 let aResult = timesTwo $ 5
-	theSame = timesTwo 5
+    theSame = timesTwo 5
 {% endhighlight %}
 
 But what if we want to apply a function over more than just one value? The most basic operation we could wish to apply to a given structure of values is some transformation of the leaves, or the payload values. We could define this per-type, or we could recognize that this "mapping" is a fundamental operation on our values and create a typeclass to describe some type that supports this operation. We call this typeclass a `Functor`, and abstractly it is any type that supports mapping with a provided function. Just like `$` is an operator applying a function to a value, we call this new operator `<$>` which applies a function to a structure of values (also called `fmap`).
@@ -354,7 +356,7 @@ But what if we want to apply a function over more than just one value? The most 
 -- Instances get to decide what this means for the given
 -- type.
 class Functor f where
-	<$> :: (a -> b) -> f a -> f b
+  <$> :: (a -> b) -> f a -> f b
 
 -- Examples:
 
@@ -365,14 +367,14 @@ class Functor f where
 -- The payload here is an operation, not a value.
 -- "Add four after multiplying by two"
 let chained = (+4) <$> (*2)
-	result = chained 7 -- 7*2 + 4 = 18
+    result = chained 7 -- 7*2 + 4 = 18
 
 -- Compare with a value that may or may not be present
 let found = Just 3
     missing = Nothing
     check x = x == 3
-	A = check <$> found -- Just True
-	B = check <$> missing -- Nothing
+    A = check <$> found -- Just True
+    B = check <$> missing -- Nothing
 {% endhighlight %}
 
 ### Applicative
@@ -390,8 +392,8 @@ We get stuck, this is awkward. We want to add these values, but we can't do it d
 
 {% highlight Haskell %}
 class Applicative f where
-	<*> :: f (a -> b) -> f a -> f b
-	pure :: a -> f a
+  <*> :: f (a -> b) -> f a -> f b
+  pure :: a -> f a
 {% endhighlight %}
 
 Think of `<*>` like a comma in function application, only it's happening inside of the structure. For now, ignore `pure`.
@@ -423,7 +425,7 @@ let x = Just 4
     y = Just 8
     knownVersion = (+) <$> x <*> y -- Just 12
     pureVersion = pure (+) <*> x <*> y -- Just 12 (notice the lack of <$>)
-	anotherWay = (+) <$> pure 10 <*> y -- Just 18
+    anotherWay = (+) <$> pure 10 <*> y -- Just 18
 {% endhighlight %}
 
 ### Monad
@@ -437,30 +439,30 @@ Just like before, let's see if we can change the structure without using anythin
 let address = Just "123 P. Sherman Lane"
     password = Just "hunter3"
     missingName = Nothing
-	presentName = Just "Leeroy Jenkins"
+    presentName = Just "Leeroy Jenkins"
 
 -- All these values are required
 data User = User
-	{ userAddress :: String
-	, userPassword :: String
-	, userName :: String
-	}
-	deriving Show
+  { userAddress :: String
+  , userPassword :: String
+  , userName :: String
+  }
+  deriving Show
 
 -- This is a use of functor/applicative to construct a user
 -- from optionally present values.
 let badUser = User <$> address <*> password <*> missingName
-			  -- ^ Nothing
-	myUser = User <$> address <*> password <*> presentName
-			  -- ^ Just (User {..})
+        -- ^ Nothing
+    myUser = User <$> address <*> password <*> presentName
+        -- ^ Just (User {..})
 
 -- But what if we want to condition on the password? We want
 -- to hypothetically return `Nothing` if the password is
 -- too short (<9001 characters).
 validUserName :: User -> Maybe User
 validUserName user =
-	| length (userPassword user) < 9001 = Nothing
-	| otherwise = Just user
+  | length (userPassword user) < 9001 = Nothing
+  | otherwise = Just user
 
 -- We can run this easily enough
 let validated = validUser myUser
@@ -468,8 +470,8 @@ let validated = validUser myUser
 -- But what if we also want to validate address length?
 validUserAddress :: User -> Maybe User
 validUserAddress user =
-	| length (userAddress user) < 9001 = Nothing
-	| otherwise = Just user
+  | length (userAddress user) < 9001 = Nothing
+  | otherwise = Just user
 
 -- We can't run this anymore... Our validation expects
 -- a `User` not a `Maybe User`. How do we chain these?
@@ -481,7 +483,7 @@ This is one of many motivations of chaining modification of not just payload, bu
 
 {% highlight Haskell %}
 instance Monad f where
-	=<< :: (a -> f b) -> f a -> f b
+  =<< :: (a -> f b) -> f a -> f b
 {% endhighlight %}
 
 Notice how in the type signature, the first thing we pass is `a -> f a` which can be interpreted as "controlling both structure and payload of the output". The final `f b`'s structure will be determined by the operation you pass. For instance, here we can finally chain user validation:
@@ -499,9 +501,9 @@ If we already have established methods to chain, `=<<` works well, but what if w
 let userValue = Just 4
 
 (\x -> Just (x * 3))
-	=<< (\x -> if even x then Just x else Nothing)
-	=<< userValue
-	-- Just 12
+  =<< (\x -> if even x then Just x else Nothing)
+  =<< userValue
+  -- Just 12
 {% endhighlight %}
 
 This is starting to look pretty unreadable, especially if we're actually doing a real program with more complexity and edge cases. If you're thinking you're ready to go back to an imperative style, Haskell actually agrees with you here. We introduce a `do` syntax to convert the above code to:
@@ -510,10 +512,10 @@ This is starting to look pretty unreadable, especially if we're actually doing a
 let userValue = Just 4
 
 do
-	x <- userValue
-	y <- if even x then Just x else Nothing
-	Just (y * 3)
-	-- Just 12
+  x <- userValue
+  y <- if even x then Just x else Nothing
+  Just (y * 3)
+  -- Just 12
 {% endhighlight %}
 
 This is actually sugar, not a new operation. There is a flipped version of `=<<` that has the input on the left and the function on the right (it is called `>>=`) and if we use that operator to rewrite the operation you can see the similarity (in fact, this is roughly what the above desugars to):
@@ -522,9 +524,9 @@ This is actually sugar, not a new operation. There is a flipped version of `=<<`
 let userValue = Just 4
 
 (
-	userValue >>= \x
-	-> if even x then Just x else Nothing) >>= \y
-	-> Just (y * 3)
+  userValue >>= \x
+  -> if even x then Just x else Nothing) >>= \y
+  -> Just (y * 3)
 {% endhighlight %}
 
 That's pretty bad, still, so the `do` syntax really makes the usage of `Monad` shine. It reads imperative, so from an ergonomics perspective it becomes very easy to use these structure manipulations without resorting to lambda callback hell. I think that other languages disincentivize using these types of patterns because they lack `do` notation, and for almost no other reason.
@@ -535,10 +537,10 @@ Finally, since we already have a method `pure` to bring a value into the applica
 let userValue = Just 4
 
 do
-	x <- userValue
-	y <- if even x then pure x else mempty
-	pure (y * 3)
-	-- Just 12
+  x <- userValue
+  y <- if even x then pure x else mempty
+  pure (y * 3)
+  -- Just 12
 {% endhighlight %}
 
 Check it out, we can apply the same operation to a list now!
@@ -547,10 +549,10 @@ Check it out, we can apply the same operation to a list now!
 let userValues = [1, 2, 3, 4, 5]
 
 do
-	x <- userValues
-	y <- if even x then pure x else mempty
-	pure (y * 3)
-	-- [6, 12]
+  x <- userValues
+  y <- if even x then pure x else mempty
+  pure (y * 3)
+  -- [6, 12]
 {% endhighlight %}
 
 The tricky part sometimes can be figuring out what monad we are inside of for a given do block, but each monad itself isn't that crazy. It's a structure with payload where we define how structure should be combined and how to map operations over the payload. The complexity lies with the implementer to make sure these definitions are sound (if you want to get formal, see the monad laws), but using the monads should be straightforward.

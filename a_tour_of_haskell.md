@@ -1,5 +1,5 @@
 ---
-math: false
+math: true
 permalink: a-tour-of-haskell
 title: A Tour of Haskell
 description: An overview of Haskell from values to monads for beginners.

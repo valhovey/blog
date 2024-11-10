@@ -183,7 +183,7 @@ Product types are even simpler, and their name also comes from the algebraic ori
 {% highlight Haskell %}
 type UserNameAndAge = (String, Int)
         -- ("Leeroy Jenkins", 29)
-				--    ^ a "product" of `String` and `Int`
+        --    ^ a "product" of `String` and `Int`
 
 type Color = (Int, Int, Int) -- e.g. (255, 0, 255) for purple
 {% endhighlight %}

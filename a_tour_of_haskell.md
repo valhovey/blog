@@ -317,7 +317,7 @@ The nuance here is subtle. At first glance, this looks like a generic or a metho
 
 We call this a "higher kinded" type because we are talking about functions of a type, instead of functions of a value. We actually glimpse into a third level of abstraction, a type of types called "kind" denoted by `*`. `s` in this example is a function from kind `*` to kind `*` also denoted as `* -> *`:
 
-{% endhighlight %}
+{% highlight Haskell %}
 ghci> :i Summable
 type Summable :: (* -> *) -> Constraint
 class Summable s where

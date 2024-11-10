@@ -476,7 +476,7 @@ validUserAddress user =
 -- We can't run this anymore... Our validation expects
 -- a `User` not a `Maybe User`. How do we chain these?
 -- validUserAddress (validateUserAddress myUser)
-				--	^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This is `Maybe User`
+--	^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This is `Maybe User`
 {% endhighlight %}
 
 This is one of many motivations of chaining modification of not just payload, but structure. We call these `a -> f a` operations where you take a base value of type `a` and produce a value in the application `f a` "binding" in Haskell.

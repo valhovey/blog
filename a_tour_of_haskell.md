@@ -323,6 +323,7 @@ class Summable s where
 The nuance here is subtle. At first glance, this looks like a generic or a method overload, but notice how our type `s` being constrained is actually being called with a type argument in `getSum` as `s a`. In other words, `s` is a higher kinded type (a function of types). If you were to try and define `Summable<s>` in Typescript then have some `s<a>` in the definition, the compiler would explode.
 
 {% highlight Typescript %}
+// The following is Typescript code.
 // Try this in a Typescript project,
 // you will see the error "s is not generic"
 
@@ -332,7 +333,7 @@ type Summable<s> {
 {% endhighlight %}
 
 
-Type arguments are final, and cannot accept more type arguments. In another word, generics are not composable in this way, and so you cannot make assertions about types like this in any language that does not support higher kinded types such as Haskell.
+Type arguments in Typescript cannot accept more type arguments. In another word, generics in most other languages are not composable in this way, and so you cannot make assertions about types like this in any language that does not support higher kinded types such as Haskell.
 
 We call this a "higher kinded" type because we are talking about functions of a type, instead of functions of a value. We actually glimpse into a third level of abstraction, a type of types called "kind" denoted by `*`. `s` in this example is a function from kind `*` to kind `*` also denoted as `* -> *`:
 

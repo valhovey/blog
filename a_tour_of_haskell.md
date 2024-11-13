@@ -28,7 +28,7 @@ Let's continue on and, for this post, pretend that we are showing up to our CS1 
 
 We want to build Haskell from scratch, at least the syntax and ergonomics. We won't need to worry about how the compiler works, or many other details under-the-hood. First off, what do we care about in a language? When we write programs, we are trying to create instructions with minimal effort that represent the steps needed to produce a desired result given arbitrary input. At the end of the day, all languages do this, but as our programs develop we run into unforseen spaghetti. Each language also balances expressiveness and dynamic syntax with coding ourselves into a corner that we must type our way out of.
 
-The core of any non-esoteric language philosophy lie some simple facts about programming:
+At the core of any non-esoteric language philosophy lie some simple facts about programming:
 
 1. We all have finite energy
 2. That energy is valuable, both in money and our own time
@@ -109,7 +109,7 @@ let theSameThing = \x y -> x * y + 3
 
 Types allow us to tag values with metadata informing the compiler what subset of values is acceptable at the call site of a given function. More formally, types are a value-level semantic construct, allowing us to express statements about the values of our program.
 
-It turns out we have already been using types in the previous examples, albeit implicitly. Haskell's compiler performs state inference in a rather clever way. Until specified, all values are assumed to be compatible with any type. The moment you saturate a value with a given value, its type becomes determined and the compiler will propagate that to any spot the variable is used. In this sense, Haskell is generic by default until we specify types. Even though you may be tempted to omit types because of this, it's generally advisable to give type signatures to all of your functions so that you can get better compiler errors. Aim to be as strict as you can be, and selectively relax your types when you need to support more generic cases.
+It turns out we have already been using types in the previous examples, albeit implicitly. Haskell's compiler performs state inference in a rather clever way. Until specified, all values are assumed to be compatible with any type. The moment you saturate a value with a given value, its type becomes determined and the compiler will propagate that to any spot the variable is used. In this sense, Haskell is generic by default until we specify types. Even though you may be tempted to omit types because of this, it's generally advisable to give type signatures to all of your functions so that you can get better compiler errors.
 
 {% highlight Haskell %}
 -- The part we add on top here is the type signature
@@ -192,7 +192,8 @@ type UserNameAndAge = (String, Int)
 type Color = (Int, Int, Int) -- e.g. (255, 0, 255) for purple
 {% endhighlight %}
 
-You can keep adding more types to the product until you get abominations like `(Int, String, Bool, Int, Int, String)` but at a certain point it makes more sense to use the next type construct in Haskell.
+You can keep adding more types to the product until you get abominations like `(Int, String, Bool, Int, Int, String)` but at a certain point it makes more sense to use record types.
+
 ### Record Types
 
 A record type is something like a product type, except that for a given value you are also given functions to extract one piece of the product. It's easier to give an example:
@@ -219,7 +220,7 @@ let myAddress = Address
 
 ### Pattern Matching
 
-A consequence of having the compiler match on values to saturate unknown types is that value definition can be structural. This is called pattern matching, and it allows for some of the most expressive definitions in any language. In Typescript, this is somewhat adjacent to pattern matching, but it's much more powerful. In a nutshell, defining types and consuming types uses the _exact same syntax_. This works for values in addition to types.
+A consequence of having the compiler match on values to saturate unknown types is that value definition can be structural. This is called pattern matching, and it allows for some of the most expressive definitions in any language. In a nutshell, defining types and consuming types uses the _exact same syntax_. This works for values in addition to types.
 
 {% highlight Haskell %}
 -- You can match on values for functions. `0` and `1`
@@ -237,7 +238,7 @@ fib n = case n of
   2 -> 1
   _ -> fib (n - 1) + fib (n - 2)
 
--- This extends to sum types as well
+-- This extends to data constructors as well
 data ListIndex = ZeroBased Int | OneBased Int
 
 toZeroBased :: ListIndex -> Int
@@ -319,7 +320,19 @@ class Summable s where
   getSum :: s a -> a
 {% endhighlight %} 
 
-The nuance here is subtle. At first glance, this looks like a generic or a method overload, but notice how our type `s` being constrained is actually being called with a type argument in `getSum` as `s a`. In other words, `s` is a higher kinded type (a function of types). If you were to try and define `Summable<s>` in Typescript then have some `s<a>` in the definition, the compiler would explode. Type arguments are final, and cannot accept more type arguments. In another word, generics are not composable in this way, and so you cannot make assertions about types like this in any language that does not support higher kinded types such as Haskell.
+The nuance here is subtle. At first glance, this looks like a generic or a method overload, but notice how our type `s` being constrained is actually being called with a type argument in `getSum` as `s a`. In other words, `s` is a higher kinded type (a function of types). If you were to try and define `Summable<s>` in Typescript then have some `s<a>` in the definition, the compiler would explode.
+
+{% highlight Typescript %}
+// Try this in a Typescript project,
+// you will see the error "s is not generic"
+
+type Summable<s> {
+    getSum: <a>(value: s<a>) => number;
+}
+{% endhighlight %}
+
+
+Type arguments are final, and cannot accept more type arguments. In another word, generics are not composable in this way, and so you cannot make assertions about types like this in any language that does not support higher kinded types such as Haskell.
 
 We call this a "higher kinded" type because we are talking about functions of a type, instead of functions of a value. We actually glimpse into a third level of abstraction, a type of types called "kind" denoted by `*`. `s` in this example is a function from kind `*` to kind `*` also denoted as `* -> *`:
 
@@ -338,7 +351,7 @@ Alright, how do we actually _do_ anything in Haskell though? All of this express
 
 It turns out that typeclasses are the missing link to take all of the concepts we have produced so far and generate a useful and expressive language. Going forward, it is important to grok the difference between structure (list, sum, product, etc...) and payload (the types at the leaves). We are going to construct a three-rung ladder that lets us climb to any operation we need to perform in Haskell, but in a type-safe way that the compiler can help us with along the way.
 
-### Functor
+### Functor, the First Rung
 
 Function application is the fundamental unit of work in Haskell. it's so fundamental, in fact, that we even have an operator for it: `$`.
 
@@ -381,7 +394,7 @@ let found = Just 3
     B = check <$> missing -- Nothing
 {% endhighlight %}
 
-### Applicative
+### Applicative, the Second Rung
 
 What happens if we want to apply a function over multiple values containing a structure of leaves? For instance, what if we want to add two `Maybe Int` values? We can try using `fmap` first just to see:
 
@@ -432,7 +445,7 @@ let x = Just 4
     anotherWay = (+) <$> pure 10 <*> y -- Just 18
 {% endhighlight %}
 
-### Monad
+### Monad, the Final Rung
 
 So far, we have only been able to change payload data, leaving the structure alone. What if we want to change the structure too? If this is in `Maybe`, this means we want to be able to conditionally return `Nothing` or `Just something` depending on what the value is. For a list, we want to return a new list with combinations from multiple lists, or with the contents of two lists of identical length zipped together. Note that for the list example we have two options for monadic behavior, this is not canonical and depending on the monad you choose to use it will change the behavior.
 

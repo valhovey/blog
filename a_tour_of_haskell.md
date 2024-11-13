@@ -3,10 +3,14 @@ math: true
 permalink: a-tour-of-haskell
 title: A Tour of Haskell
 description: An overview of Haskell from values to monads for beginners.
-featured_image: /blog/images/trig_fractal/first_look.png
+featured_image: /blog/images/a_tour_of_haskell/haskell-art.png
 layout: page
 date: 2024-11-10
 ---
+
+{:refdef: style="display:flex;align-items:center;flex-direction:column;"}
+![The Haskell Logo, a combination of the lambda and bind operator over a green landscape.](/blog/images/a_tour_of_haskell/haskell-art.jpg)
+{:refdef}
 
 # Motivation
 
@@ -30,7 +34,7 @@ The core of any non-esoteric language philosophy lie some simple facts about pro
 2. That energy is valuable, both in money and our own time
 3. We have tools to provably prevent classes of errors
 
-From (1) and (2) we must use (3) so that (1) can be used as much on unsolved problems and not solved problems. In addition, we should minimize the syntax needed to express the problem we are solving. Different languages take different approaches here, and it would be incorrect to assert any one language has solved the problem (for typed languages specifically, check out [the expression problem](https://en.wikipedia.org/wiki/Expression_problem)). The most common source of errors in a dynamic language are caused by evolving assumptions about state, and how it gets used/transformed. Any changes in how we label or treat our program state result in changes that ripple through our program. Without types, the responsibility of remembering where all of the state gets used falls on the programmer.
+From (1) and (2) we must use (3) so that (1) can be used as much on unsolved problems and not solved problems. In addition, we should minimize the syntax needed to express the problem we are solving. Different languages take different approaches here, and it would be incorrect to assert any one language has solved the problem (for typed languages specifically, check out [the expression problem](https://en.wikipedia.org/wiki/Expression_problem){:target="_blank"}). The most common source of errors in a dynamic language are caused by evolving assumptions about state, and how it gets used/transformed. Any changes in how we label or treat our program state result in changes that ripple through our program. Without types, the responsibility of remembering where all of the state gets used falls on the programmer.
 
 Types offer a unique advantage for preventing whole classes of errors. If we can rely on a compiler to check our assumptions and lead us to where errors exist in our code, then we can instead focus our energy on other aspects of the problems we are solving. If at all possible, we should try to surface errors at compile time. Having errors surface at runtime usually means that our programs blow up in our own faces at best, and in our users' faces at worst.
 
@@ -60,7 +64,7 @@ let x = 40
 {% endhighlight %}
 ### Functions or Methods
 
-Haskell is built on the foundation of [Lambda Calculus](https://en.wikipedia.org/wiki/Lambda_calculus), which is an entire computing paradigm completely built out of functions. That's a rabbit hole in itself, and it is not required reading for this post. The important takeaway is that the foundational atom of Haskell is the function, defined as an operation that takes one value as input and returns one value as output.
+Haskell is built on the foundation of [Lambda Calculus](https://en.wikipedia.org/wiki/Lambda_calculus){:target="_blank"}, which is an entire computing paradigm completely built out of functions. That's a rabbit hole in itself, and it is not required reading for this post. The important takeaway is that the foundational atom of Haskell is the function, defined as an operation that takes one value as input and returns one value as output.
 
 {% highlight Haskell %}
 -- Uninteresting function, just returns what you give it
@@ -128,7 +132,7 @@ There is a new piece of syntax here `Num a => . . .` that we will visit soon, fo
 
 ### Sum Types
 
-Haskell uses a type system that is algebraic, which is a buzzword that leads you to believe it is much more complicated than it actually ends up being. Formally, the math that leads to this type system is [wildly complex](https://en.wikipedia.org/wiki/Product_(category_theory)) but just like in the case of Lambda Calculus it is not necessary reading for this post.
+Haskell uses a type system that is algebraic, which is a buzzword that leads you to believe it is much more complicated than it actually ends up being. Formally, the math that leads to this type system is [wildly complex](https://en.wikipedia.org/wiki/Product_(category_theory){:target="_blank"}) but just like in the case of Lambda Calculus it is not necessary reading for this post.
 
 Often in our programs we want to express a value that can take on one of many values. We call this a sum type, and in Haskell you can define such a value like this:
 
@@ -326,7 +330,7 @@ class Summable s where
   getSum :: s a -> a
 {% endhighlight %}
 
-One more subtle nuance between something like method overloading and typeclasses is the order of definition. In overloading, you define the method for a given type. In typeclasses, you are developing a type for a given set of methods. This transpose is a direct reflection of [the expression problem](https://en.wikipedia.org/wiki/Expression_problem) (which is not required reading, but if you are curious to read more, check it out).
+One more subtle nuance between something like method overloading and typeclasses is the order of definition. In overloading, you define the method for a given type. In typeclasses, you are developing a type for a given set of methods. This transpose is a direct reflection of [the expression problem](https://en.wikipedia.org/wiki/Expression_problem){:target="_blank"} (which is not required reading, but if you are curious to read more, check it out).
 
 ## A Useful Ladder
 

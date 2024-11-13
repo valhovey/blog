@@ -233,12 +233,12 @@ fib n = case n of
   2 -> 1
   _ -> fib (n - 1) + fib (n - 2)
 
--- This extends to branches of types as well
+-- This extends to sum types as well
 data ListIndex = ZeroBased Int | OneBased Int
 
 toZeroBased :: ListIndex -> Int
 toZeroBased listIndex = case listIndex of
-  -- On the left-hand side, x is bound to the value in the leaf
+  -- On the left-hand side, x is bound to the contained value
   ZeroBased x -> x
   OneBased x -> x - 1
 {% endhighlight %}

@@ -12,21 +12,21 @@ date: 2024-11-10
 ![The Haskell Logo, a combination of the lambda and bind operator over a green landscape.](/blog/images/a_tour_of_haskell/haskell-art.jpg)
 {:refdef}
 
+I would like to share the knowledge I wish I could have read when I was learning Haskell earnestly. In college, I was excited about functional programming but always stopped short of fully diving into Haskell. The type system seemed counter-intuitive and errors were hard to debug, but I thoroughly enjoyed the expressiveness of this language and the patterns that I did learn became staples of my everyday coding style. These days, Haskell is most of what I program in professionally and I finally feel comfortable sharing a post on how to learn the basics. There are hundreds of amazing resources out there, but I hope that this post helps bring a unique spin on Haskell. The ideas here are what made the language click for me.
+
 # Motivation
 
-I'm going to attempt to write the tutorial I wish I could have read when I was learning Haskell earnestly. In college, I was excited about functional programming but always stopped short of fully diving into Haskell. The type system seemed counter-intuitive and errors were hard to debug, but I thoroughly enjoyed the expressiveness of this language and the patterns that I did learn became staples of my everyday coding style. These days, Haskell is most of what I program in professionally and I finally feel comfortable sharing a post on how to learn the basics.
-
-Before we start, it's good to get an idea of _why_ we would use a language like Haskell. Most are used to an imperative style with FP sprinkled in wherever we need declarative code, at least in the case of JS/TS, Python, and even C++ these days. If you're excited about Rust, then chances are you may not need this initial motivation. Much of Rust is inspired from Haskell, and the overlap in Rust/Haskell communities is significant. One might even say that Rust evangelism is highly comorbid with Haskell enthusiasm.
+It's good to get an idea of _why_ we would use a language like Haskell. Most are used to an imperative style with FP sprinkled in wherever we need declarative code, at least in the case of JS/TS, Python, and even C++ these days. If you're excited about Rust, then chances are you may not need this initial motivation. Much of Rust is inspired from Haskell, and the overlap in Rust/Haskell communities is significant. One might even say that Rust evangelism is highly comorbid with Haskell enthusiasm.
 
 ## Entertain a Hypothetical
 
 If you have no experience with a strongly typed purely functional language like Haskell, take a moment here and try to gather up all of the programming knowledge you have learned up until this point in your life and set it down for a moment. The imperative and pure functional styles are difficult to map onto each other. It is possible, as you will see by the end of this post, but attempting to do so as a new Haskell learner can lead to false summits and counter-productive analogies.
 
-Let's continue on and, for this post, pretend that we are showing up to our CS1 course with an open mind and an enthusiasm for learning.
+Let's continue on and, for this post, pretend that we are showing up to our CS1 course with an open mind and an enthusiasm for learning. Let's build an understanding of functional programming from scratch using Haskell.
 
 ## Philosophy
 
-We want to build Haskell from scratch, at least the syntax and ergonomics. We won't need to worry about how the compiler works, or many other details under-the-hood. First off, what do we care about in a language? When we write programs, we are trying to create instructions with minimal effort that represent the steps needed to produce a desired result given arbitrary input. At the end of the day, all languages do this, but as our programs develop we run into unforseen spaghetti. Each language also balances expressiveness and dynamic syntax with coding ourselves into a corner that we must type our way out of.
+First off, what do we care about in a language? When we write programs, we are trying to create instructions with minimal effort that represent the steps needed to produce a desired result given arbitrary input. At the end of the day, all languages do this, but as our programs develop we run into unforseen spaghetti. Each language also balances expressiveness and dynamic syntax with coding ourselves into a corner that we must type our way out of.
 
 At the core of any non-esoteric language philosophy lie some simple facts about programming:
 

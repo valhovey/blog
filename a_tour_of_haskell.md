@@ -34,7 +34,7 @@ At the core of any non-esoteric language philosophy lie some simple facts about 
 2. That energy is valuable, both in money and our own time
 3. We have tools to provably prevent classes of errors
 
-From (1) and (2) we must use (3) so that (1) can be used as much on unsolved problems and not solved problems. In addition, we should minimize the syntax needed to express the problem we are solving. Different languages take different approaches here, and it would be incorrect to assert any one language has solved the problem (for typed languages specifically, check out [the expression problem](https://en.wikipedia.org/wiki/Expression_problem){:target="_blank"}). The most common source of errors in a dynamic language are caused by evolving assumptions about state, and how it gets used/transformed. Any changes in how we label or treat our program state result in changes that ripple through our program. Without types, the responsibility of remembering where all of the state gets used falls on the programmer.
+From (1) and (2) we must use (3) so that (1) can be used as much on unsolved problems and not solved problems. In addition, we should minimize the syntax needed to express the problem we are solving. Different languages take different approaches here, and it would be incorrect to assert any one language has solved the problem (for typed languages specifically, check out [the expression problem](https://en.wikipedia.org/wiki/Expression_problem)){:target="_blank"}. The most common source of errors in a dynamic language are caused by evolving assumptions about state, and how it gets used/transformed. Any changes in how we label or treat our program state result in changes that ripple through our program. Without types, the responsibility of remembering where all of the state gets used falls on the programmer.
 
 Types offer a unique advantage for preventing whole classes of errors. If we can rely on a compiler to check our assumptions and lead us to where errors exist in our code, then we can instead focus our energy on other aspects of the problems we are solving. If at all possible, we should try to surface errors at compile time. Having errors surface at runtime usually means that our programs blow up in our own faces at best, and in our users' faces at worst.
 
@@ -350,7 +350,9 @@ One more subtle nuance between something like method overloading and typeclasses
 
 Alright, how do we actually _do_ anything in Haskell though? All of this expression has so far been quite poetic, but at the end of the day our philosophic principles are based around actually getting something done. If we can't do that, then all of this is not exactly helpful.
 
-It turns out that typeclasses are the missing link to take all of the concepts we have produced so far and generate a useful and expressive language. Going forward, it is important to grok the difference between structure (list, sum, product, etc...) and payload (the types at the leaves). We are going to construct a three-rung ladder that lets us climb to any operation we need to perform in Haskell, but in a type-safe way that the compiler can help us with along the way.
+It turns out that higher kinded types expressed with typeclasses are the missing links to take all of the concepts we have produced so far and generate a useful and expressive language. It [is possible](https://www.haskellforall.com/2012/05/scrap-your-type-classes.html){:target="_blank"} to express these coming concepts without typeclasses, but the convention in Haskell is to use them for better ergonomics.
+
+Going forward, it is important to grok the difference between structure (list, sum, product, etc...) and payload (the types at the leaves). We are going to construct a three-rung ladder that lets us climb to any operation we need to perform in Haskell, but in a type-safe way that the compiler can help us with along the way.
 
 ### Functor, the First Rung
 
@@ -403,7 +405,9 @@ What happens if we want to apply a function over multiple values containing a st
 let x = Just 4
     y = Just 8
     (+) <$> x -- Just (+4)
-    -- ???
+    -- We want something like (+) <$> x <$> y
+    -- But the second <$> isn't given a function
+    -- on the left-hand side but `Just (+4)`...
 {% endhighlight %}
 
 We get stuck, this is awkward. We want to add these values, but we can't do it directly, and `fmap` partially applies the inside and leaves us with a structure of that function partially applied. We need machinery to apply that to the next value.  We create a new typeclass, `Applicative`:
@@ -427,12 +431,9 @@ let x = Just 4
 -- Find all sums of values from two lists
 let  sums = (+) <$> [1, 2, 3] <*> [4, 5, 6]
 			-- ^ [5,6,7,6,7,8,7,8,9]
-			
--- Note that Cartesian product as behavior is a
--- choice, and not a requirement. We could also
--- choose to zip in place with `ZipList`.
-let zipSums = (+) <$> ZipList [1, 2, 3] <*> ZipList [4, 5, 6]
-			  -- ^ ZipList {getZipList = [5,7,9]}
+      -- Note: the structure join behavior for
+      -- lists is to take all combinations.
+      -- This is the Cartesian Product.
 {% endhighlight %}
 
 `pure` is needed so that we can lift a function into this "structure of operations" concept. It's also a way to take a payload value and bring it into the `Functor` type, so we could have ostensibly chosen to introduce it there too. Don't let it confuse you from the real star of the show here `<*>`. Here's how `pure` can be used, though:

@@ -386,18 +386,18 @@ class Functor f where
 -- Apply a function over a list.
 (+3) <$> [1, 2, 3] -- [4, 5, 6]
 
+-- Compare with a value that may or may not be present
+found = Just 3
+missing = Nothing
+check x = x == 3
+a = check <$> found -- Just True
+b = check <$> missing -- Nothing
+
 -- Chain two functions together:
 -- The payload here is an operation, not a value.
 -- "Add four after multiplying by two"
 chained = (+4) <$> (*2)
 result = chained 7 -- 7*2 + 4 = 18
-
--- Compare with a value that may or may not be present
-found = Just 3
-missing = Nothing
-check x = x == 3
-A = check <$> found -- Just True
-B = check <$> missing -- Nothing
 {% endhighlight %}
 
 ### Applicative, the Second Rung

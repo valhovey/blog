@@ -59,8 +59,9 @@ Before we continue, I want to give an intro to Haskell syntax. I find that other
 We can't do much without values and variables in a language. Values in Haskell are immutable (they cannot be changed after declaration). Aside from that, declaring variables is similar to other languages. Also, note that comments begin with `-- I'm a comment :)` and will not be interpreted as code by the compiler.
 
 {% highlight Haskell %}
-let x = 40
-    y = 2
+x = 40
+y = 2
+z = x + y -- 42
 {% endhighlight %}
 ### Functions or Methods
 
@@ -85,13 +86,14 @@ Even though functions of multiple arguments are really nested functions, the syn
 {% highlight Haskell %}
 quadratic a b c x = a + b*x + c*x^2
 
-let polynomial = quadratic 1 2 3
-    -- The coefficients have been closed over, now we can call
-    -- the quadratic with the remaining value. This pattern of
-    -- placing parameters first and the input last is called
-    -- "data-last" and is useful in curried languages.
-    atZero = polynomial 0 -- 1
-    atFour = polynomial 4 -- 57
+polynomial = quadratic 1 2 3
+
+-- The coefficients have been closed over, now we can call
+-- the quadratic with the remaining value. This pattern of
+-- placing parameters first and the input last is called
+-- "data-last" and is useful in curried languages.
+atZero = polynomial 0 -- 1
+atFour = polynomial 4 -- 57
 {% endhighlight %}
 
 One more useful piece of syntax is lambdas, which let you define functions in-place wherever you need them.
@@ -102,7 +104,7 @@ example x y = x * y + 3
 -- Here is the same function as a lambda,
 -- you don't even need to assign the right
 -- hand expression to a variable if you like.
-let theSameThing = \x y -> x * y + 3
+theSameThing = \x y -> x * y + 3
 {% endhighlight %}
 
 ### Types
@@ -117,8 +119,8 @@ add :: a -> a -> a
 add x y = x + y
 
 -- Here we saturate `a` with `Int`
-let sum = add 3 4 -- 7
-    badSum = add 3 "lol" -- This will not compile
+sum = add 3 4 -- 7
+badSum = add 3 "lol" -- This will not compile
 {% endhighlight %}
 
 If you are curious to see the type of a value, in the Haskell `ghci` interactive REPL you can use the `:t` command to print the type of any variable. For instance:
@@ -150,7 +152,7 @@ data NotificationPreference
   -- ^ This is Haskell style formatting for multi-line
   --   syntax. Separator first, then value.
 
-let annoyingNotifications = NotifyIntervalDays 1
+annoyingNotifications = NotifyIntervalDays 1
 {% endhighlight %}
 
 The type itself is also a function, surprisingly enough. In the above example, `NotificationPreference` takes no type arguments, but if we wanted to make a sum type that could take arguments we absolutely could.
@@ -163,7 +165,7 @@ data UserInput a
   | FromMindControl a
 
 -- `a` is saturated with `Int`, producing `UserInput Int`
-let userValue = FromKeyboard 5
+userValue = FromKeyboard 5
 {% endhighlight %}
 
 For values, we had data constructors, and now for types we have type constructors. `UserInput` is a type constructor taking one type argument and producing a type we can use to tag a value. To review:
@@ -209,13 +211,14 @@ data Address = Address
  -- (String, String, String, Int)
  -- but actually sane.
 
-let myAddress = Address
-      { address = "42"
-      , street = "Wallaby Way"
-      , city = "Sydney"
-      , zipCode = 12345
-      }
-    myCity = city myAddress
+myAddress = Address
+  { address = "42"
+  , street = "Wallaby Way"
+  , city = "Sydney"
+  , zipCode = 12345
+  }
+
+myCity = city myAddress
 {% endhighlight %}
 
 ### Pattern Matching
@@ -366,8 +369,8 @@ timesTwo x = 2 * x
 -- ($) :: (a -> b) -> a -> b
 -- ^ Take a function `f` and apply it to an argument
 
-let aResult = timesTwo $ 5
-    theSame = timesTwo 5
+aResult = timesTwo $ 5
+theSame = timesTwo 5
 {% endhighlight %}
 
 But what if we want to apply a function over more than just one value? The most basic operation we could wish to apply to a given structure of values is some transformation of the leaves, or the payload values. We could define this per-type, or we could recognize that this "mapping" is a fundamental operation on our values and create a typeclass to describe some type that supports this operation. We call this typeclass a `Functor`, and abstractly it is any type that supports mapping with a provided function. Just like `$` is an operator applying a function to a value, we call this new operator `<$>` which applies a function to a structure of values (also called `fmap`).
@@ -386,15 +389,15 @@ class Functor f where
 -- Chain two functions together:
 -- The payload here is an operation, not a value.
 -- "Add four after multiplying by two"
-let chained = (+4) <$> (*2)
-    result = chained 7 -- 7*2 + 4 = 18
+chained = (+4) <$> (*2)
+result = chained 7 -- 7*2 + 4 = 18
 
 -- Compare with a value that may or may not be present
-let found = Just 3
-    missing = Nothing
-    check x = x == 3
-    A = check <$> found -- Just True
-    B = check <$> missing -- Nothing
+found = Just 3
+missing = Nothing
+check x = x == 3
+A = check <$> found -- Just True
+B = check <$> missing -- Nothing
 {% endhighlight %}
 
 ### Applicative, the Second Rung
@@ -402,12 +405,12 @@ let found = Just 3
 What happens if we want to apply a function over multiple values containing a structure of leaves? For instance, what if we want to add two `Maybe Int` values? We can try using `fmap` first just to see:
 
 {% highlight Haskell %}
-let x = Just 4
-    y = Just 8
-    (+) <$> x -- Just (+4)
-    -- We want something like (+) <$> x <$> y
-    -- But the second <$> isn't given a function
-    -- on the left-hand side but `Just (+4)`...
+x = Just 4
+y = Just 8
+(+) <$> x -- Just (+4)
+-- We want something like (+) <$> x <$> y
+-- But the second <$> isn't given a function
+-- on the left-hand side but `Just (+4)`...
 {% endhighlight %}
 
 We get stuck, this is awkward. We want to add these values, but we can't do it directly, and `fmap` partially applies the inside and leaves us with a structure of that function partially applied. We need machinery to apply that to the next value.  We create a new typeclass, `Applicative`:
@@ -424,27 +427,27 @@ Think of `<*>` like a comma in function application, only it's happening inside 
 -- Examples:
 
 -- Add two `Maybe Int`s
-let x = Just 4
-    y = Just 8
-    result = (+) <$> x <*> y -- Just 12
+x = Just 4
+y = Just 8
+result = (+) <$> x <*> y -- Just 12
 
 -- Find all sums of values from two lists
-let  sums = (+) <$> [1, 2, 3] <*> [4, 5, 6]
-			-- ^ [5,6,7,6,7,8,7,8,9]
-      -- Note: the structure join behavior for
-      -- lists is to take all combinations.
-      -- This is the Cartesian Product.
+sums = (+) <$> [1, 2, 3] <*> [4, 5, 6]
+        -- ^ [5,6,7,6,7,8,7,8,9]
+  -- Note: the structure join behavior for
+  -- lists is to take all combinations.
+  -- This is the Cartesian Product.
 {% endhighlight %}
 
 `pure` is needed so that we can lift a function into this "structure of operations" concept. It's also a way to take a payload value and bring it into the `Functor` type, so we could have ostensibly chosen to introduce it there too. Don't let it confuse you from the real star of the show here `<*>`. Here's how `pure` can be used, though:
 
 {% highlight Haskell %}
 -- Pure is just a way to bring a value or operation into the application
-let x = Just 4
-    y = Just 8
-    knownVersion = (+) <$> x <*> y -- Just 12
-    pureVersion = pure (+) <*> x <*> y -- Just 12 (notice the lack of <$>)
-    anotherWay = (+) <$> pure 10 <*> y -- Just 18
+x = Just 4
+y = Just 8
+knownVersion = (+) <$> x <*> y -- Just 12
+pureVersion = pure (+) <*> x <*> y -- Just 12 (notice the lack of <$>)
+anotherWay = (+) <$> pure 10 <*> y -- Just 18
 {% endhighlight %}
 
 ### Monad, the Final Rung
@@ -455,10 +458,10 @@ Just like before, let's see if we can change the structure without using anythin
 
 {% highlight Haskell %}
 -- Assume these came from elsewhere, input, DB, etc...
-let address = Just "123 P. Sherman Lane"
-    password = Just "hunter3"
-    missingName = Nothing
-    presentName = Just "Leeroy Jenkins"
+address = Just "123 P. Sherman Lane"
+password = Just "hunter3"
+missingName = Nothing
+presentName = Just "Leeroy Jenkins"
 
 -- All these values are required
 data User = User
@@ -470,9 +473,9 @@ data User = User
 
 -- This is a use of functor/applicative to construct a user
 -- from optionally present values.
-let badUser = User <$> address <*> password <*> missingName
+badUser = User <$> address <*> password <*> missingName
         -- ^ Nothing
-    myUser = User <$> address <*> password <*> presentName
+myUser = User <$> address <*> password <*> presentName
         -- ^ Just (User {..})
 
 -- But what if we want to condition on the password? We want
@@ -484,7 +487,7 @@ validUserName user =
   | otherwise = Just user
 
 -- We can run this easily enough
-let validated = validUser myUser
+validated = validUser myUser
 
 -- But what if we also want to validate address length?
 validUserAddress :: User -> Maybe User
@@ -509,7 +512,7 @@ Notice how in the type signature, the first thing we pass is `a -> f a` which ca
 
 {% highlight Haskell %}
 -- Parentheses not needed, but added for clarity
-let validUser = validUserAddress =<< (validUserName myUser)
+validUser = validUserAddress =<< (validUserName myUser)
 {% endhighlight %}
 
 ### Sugar
@@ -517,7 +520,7 @@ let validUser = validUserAddress =<< (validUserName myUser)
 If we already have established methods to chain, `=<<` works well, but what if we are doing things ad-hoc? We can use lambdas to chain operations. I'll stick to using `Maybe a` because it is honestly the easiest structure to think about with these operations (but keep in mind this reasoning applies to any `Monad` instance):
 
 {% highlight Haskell %}
-let userValue = Just 4
+userValue = Just 4
 
 (\x -> Just (x * 3))
   =<< (\x -> if even x then Just x else Nothing)
@@ -528,7 +531,7 @@ let userValue = Just 4
 This is starting to look pretty unreadable, especially if we're actually doing a real program with more complexity and edge cases. If you're thinking you're ready to go back to an imperative style, Haskell actually agrees with you here. We introduce a `do` syntax to convert the above code to:
 
 {% highlight Haskell %}
-let userValue = Just 4
+userValue = Just 4
 
 do
   x <- userValue
@@ -540,7 +543,7 @@ do
 This is actually sugar, not a new operation. There is a flipped version of `=<<` that has the input on the left and the function on the right (it is called `>>=`) and if we use that operator to rewrite the operation you can see the similarity (in fact, this is roughly what the above desugars to):
 
 {% highlight Haskell %}
-let userValue = Just 4
+userValue = Just 4
 
 (
   userValue >>= \x
@@ -553,7 +556,7 @@ That's pretty bad, still, so the `do` syntax really makes the usage of `Monad` s
 Finally, since we already have a method `pure` to bring a value into the application, we can make `do` blocks look the same whether or not we are in `Maybe a`, `[a]`, or other `Monad a` instances. I also cheat a little bit and use a value `mempty` from the `Monoid a` typeclass, which indicates the "empty" value for that operation. For `Maybe a` it will be `Nothing`, for a `[a]` it will be `[]`, for `String` it will be `""`, etc...
 
 {% highlight Haskell %}
-let userValue = Just 4
+userValue = Just 4
 
 do
   x <- userValue
@@ -565,7 +568,7 @@ do
 Check it out, we can apply the same operation to a list now!
 
 {% highlight Haskell %}
-let userValues = [1, 2, 3, 4, 5]
+userValues = [1, 2, 3, 4, 5]
 
 do
   x <- userValues

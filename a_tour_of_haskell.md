@@ -229,14 +229,14 @@ A consequence of having the compiler match on values to saturate unknown types i
 -- You can match on values for functions. `0` and `1`
 -- as arguments will match before the more general pattern
 -- listed last.
-fib n :: a -> a
+fib :: Int -> Int
 fib 0 = 1
 fib 1 = 1
 fib n = fib (n - 1) + fib (n - 2)
 
 -- Alternatively, you can case match
-fib n :: a -> a
-fib n = case n of
+fib' :: Int -> Int
+fib' n = case n of
   1 -> 1
   2 -> 1
   _ -> fib (n - 1) + fib (n - 2)

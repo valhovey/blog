@@ -475,7 +475,7 @@ data User = User
 -- from optionally present values.
 badUser = User <$> address <*> password <*> missingName
         -- ^ Nothing
-myUser = User <$> address <*> password <*> presentName
+presentUser = User <$> address <*> password <*> presentName
         -- ^ Just (User {..})
 
 -- But what if we want to condition on the password? We want
@@ -524,10 +524,10 @@ If we already have established methods to chain, `=<<` works well, but what if w
 {% highlight Haskell %}
 userValue = Just 4
 
-(\x -> Just (x * 3))
-  =<< (\x -> if even x then Just x else Nothing)
-  =<< userValue
-  -- Just 12
+(\val -> Just (val * 3)) =<< (
+  (\val -> if even val then Just val else Nothing) =<< userValue
+)
+-- Just 12
 {% endhighlight %}
 
 This is starting to look pretty unreadable, especially if we're actually doing a real program with more complexity and edge cases. If you're thinking you're ready to go back to an imperative style, Haskell actually agrees with you here. We introduce a `do` syntax to convert the above code to:

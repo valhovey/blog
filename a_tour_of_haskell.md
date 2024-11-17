@@ -482,7 +482,7 @@ myUser = User <$> address <*> password <*> presentName
 -- to hypothetically return `Nothing` if the password is
 -- too short (<9001 characters).
 validUserName :: User -> Maybe User
-validUserName user =
+validUserName user
   | length (userPassword user) < 9001 = Nothing
   | otherwise = Just user
 
@@ -491,7 +491,7 @@ validated = validUser myUser
 
 -- But what if we also want to validate address length?
 validUserAddress :: User -> Maybe User
-validUserAddress user =
+validUserAddress user
   | length (userAddress user) < 9001 = Nothing
   | otherwise = Just user
 

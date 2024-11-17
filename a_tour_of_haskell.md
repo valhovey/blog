@@ -486,8 +486,10 @@ validUserName user
   | length (userPassword user) < 9001 = Nothing
   | otherwise = Just user
 
+presentUser = User "A st" "hunter3" "Atrus"
+
 -- We can run this easily enough
-validated = validUser myUser
+validated = validUser presentUser
 
 -- But what if we also want to validate address length?
 validUserAddress :: User -> Maybe User
@@ -497,7 +499,7 @@ validUserAddress user
 
 -- We can't run this anymore... Our validation expects
 -- a `User` not a `Maybe User`. How do we chain these?
--- validUserAddress (validateUserAddress myUser)
+-- validUserAddress (validateUserAddress presentUser)
 --	^^^^^^^^^^^^^^^^^^^^^^^^^^^^ This is `Maybe User`
 {% endhighlight %}
 
@@ -512,7 +514,7 @@ Notice how in the type signature, the first thing we pass is `a -> f a` which ca
 
 {% highlight Haskell %}
 -- Parentheses not needed, but added for clarity
-validUser = validUserAddress =<< (validUserName myUser)
+validUser = validUserAddress =<< (validUserName presentUser)
 {% endhighlight %}
 
 ### Sugar

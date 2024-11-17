@@ -379,7 +379,7 @@ But what if we want to apply a function over more than just one value? The most 
 -- Instances get to decide what this means for the given
 -- type.
 class Functor f where
-  <$> :: (a -> b) -> f a -> f b
+  (<$>) :: (a -> b) -> f a -> f b
 
 -- Examples:
 
@@ -417,7 +417,7 @@ We get stuck, this is awkward. We want to add these values, but we can't do it d
 
 {% highlight Haskell %}
 class Applicative f where
-  <*> :: f (a -> b) -> f a -> f b
+  (<*>) :: f (a -> b) -> f a -> f b
   pure :: a -> f a
 {% endhighlight %}
 
@@ -504,8 +504,8 @@ validUserAddress user =
 This is one of many motivations of chaining modification of not just payload, but structure. We call these `a -> f a` operations where you take a base value of type `a` and produce a value in the application `f a` "binding" in Haskell.
 
 {% highlight Haskell %}
-instance Monad f where
-  =<< :: (a -> f b) -> f a -> f b
+class Monad f where
+  (=<<) :: (a -> f b) -> f a -> f b
 {% endhighlight %}
 
 Notice how in the type signature, the first thing we pass is `a -> f a` which can be interpreted as "controlling both structure and payload of the output". The final `f b`'s structure will be determined by the operation you pass. For instance, here we can finally chain user validation:

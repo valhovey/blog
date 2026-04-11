@@ -27,34 +27,34 @@ mAuthor :: Maybe Person
 
 book :: Maybe Book
 book = do
-	title <- mTitle
-	description <- mDescription
-	author <- mAuthor
-	
-	pure $ Book {..}
+  title <- mTitle
+  description <- mDescription
+  author <- mAuthor
+  
+  pure $ Book {..}
 {% endhighlight %}
 
 When we wish to upgrade a `Maybe` to an `Either`, however, things can start to become harder to follow. Typically, you want to start using `Either` when you wish to annotate the reason for the failure (after all, `Either` is semantically compatible with `Maybe`, it just adds a value for the `Nothing` branch).
 
 {% highlight Haskell %}
 data BookError
-	= NoTitle
-	| NoDescription
-	| NoAuthor
+  = NoTitle
+  | NoDescription
+  | NoAuthor
 
 book :: Either Book BookError
 book = do
-	title <- case mTitle of
-		Just title -> Right title
-		Nothing -> Left NoTitle
-	title <- case mDescription of
-		Just description -> Right description
-		Nothing -> Left NoDescription
-	author <- case mAuthor of
-		Just author -> Right author
-		Nothing -> Left NoAuthor
-	
-	pure $ Book {..}
+  title <- case mTitle of
+    Just title -> Right title
+    Nothing -> Left NoTitle
+  title <- case mDescription of
+    Just description -> Right description
+    Nothing -> Left NoDescription
+  author <- case mAuthor of
+    Just author -> Right author
+    Nothing -> Left NoAuthor
+  
+  pure $ Book {..}
 {% endhighlight %}
 
 There is actually a nice library method for this in `Control.Error.Util` called `note` that lets you tag the `Nothing` branch and promote the `Maybe` into an `Either`:
@@ -62,11 +62,11 @@ There is actually a nice library method for this in `Control.Error.Util` called 
 {% highlight Haskell %}
 book :: Either Book BookError
 book = do
-	title <- note NoTitle mTitle
-	description <- note NoDescription mTitle
-	author <- note NoAuthor mTitle
-	
-	pure $ Book {..}
+  title <- note NoTitle mTitle
+  description <- note NoDescription mTitle
+  author <- note NoAuthor mTitle
+  
+  pure $ Book {..}
 {% endhighlight %}
 
 Sometimes this is also called `maybeToEither`, but I prefer the terser `note`.
@@ -82,16 +82,16 @@ getAuthor :: IO (Maybe Person)
 
 getBook :: IO (Either Book BookError)
 getBook = do
-	mTitle <- getTitle
-	mDescription <- getDescription
-	mAuthor <- getAuthor
+  mTitle <- getTitle
+  mDescription <- getDescription
+  mAuthor <- getAuthor
 
-	pure $ do
-		title <- note NoTitle mTitle
-		description <- note NoDescription mTitle
-		author <- note NoAuthor mTitle
+  pure $ do
+    title <- note NoTitle mTitle
+    description <- note NoDescription mTitle
+    author <- note NoAuthor mTitle
 
-		pure $ Book {..}
+    pure $ Book {..}
 {% endhighlight %}
 
 Transformers are built specifically to solve this problem for a grab-bag of monads. Conceptually, they let you "lift" operations of the outer monad into an upgraded one that has your nested type, along with a set of methods to make operating with the nested monad as easy as `Maybe` and `Either` when they are not nested.
@@ -103,11 +103,11 @@ getAuthor :: IO (Maybe Person)
 
 getBook :: IO (Maybe Book)
 getBook = runMaybeT $ do
-	title <- MaybeT $ getTitle
-	description <- MaybeT $ getDescription
-	author <- MaybeT $ getAuthor
-	
-	pure $ Book {..}
+  title <- MaybeT $ getTitle
+  description <- MaybeT $ getDescription
+  author <- MaybeT $ getAuthor
+  
+  pure $ Book {..}
 {% endhighlight %}
 
 Magic! Under the hood, this is just a `newtype` that represents the nested monads (in this case `IO (Maybe a))`). These transformers are abstract, but the outer monad is typically something derivative of `IO` and the inner monad is usually `Maybe` or `Either`. Sometimes you'll see `ListT`, but it has been more rare in my experience. Without getting into the weeds, these concepts all serve one common purpose "make dealing with potentially absent values inside of `IO` easy".
@@ -136,16 +136,16 @@ getAuthor :: IO (Either ApiError Person)
 
 getBook :: IO (Either BookError Book)
 getBook = runExceptT $ do
-	mTitle <- lift getTitle
-	mDescription <- lift getDescription
-	
-	author <- ExceptT $ getAuthor
-	
-	case mTitle of
-		Nothing -> Left NoTitle
-		Just title -> case mDescription of
-			Nothing -> NoDescription
-			Just description -> pure $ Book {..}
+  mTitle <- lift getTitle
+  mDescription <- lift getDescription
+  
+  author <- ExceptT $ getAuthor
+  
+  case mTitle of
+    Nothing -> Left NoTitle
+    Just title -> case mDescription of
+      Nothing -> NoDescription
+      Just description -> pure $ Book {..}
 {% endhighlight %}
 
 This is a toy example, but you can see things are starting to get unruly. In production code this can explode to a few hundred lines of nesting with sometimes up to four levels. How can we make this better? We can start by using `noteT` which is the transformer equivalent of `note` which we already encountered. There's a slight problem, though. `note` was pretty convenient in that it was a standalone method that upgraded a `Maybe` into an `Either`, but `noteT` _requires_ a `MaybeT` note an `IO (Maybe a)`. It's a bit more awkward, but we can nest the `newtype` constructor and `noteT` to clean up our code:
@@ -153,11 +153,11 @@ This is a toy example, but you can see things are starting to get unruly. In pro
 {% highlight Haskell %}
 getBook :: IO (Either BookError Book)
 getBook = runExceptT $ do
-	mTitle <- noteT NoTitle $ MaybeT getTitle
-	mDescription <- noteT NoDescription $ MaybeT getDescription
-	author <- ExceptT $ getAuthor
-	
-	pure $ Book {..}
+  mTitle <- noteT NoTitle $ MaybeT getTitle
+  mDescription <- noteT NoDescription $ MaybeT getDescription
+  author <- ExceptT $ getAuthor
+  
+  pure $ Book {..}
 {% endhighlight %}
 
 # A Missing Method

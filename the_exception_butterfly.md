@@ -2,8 +2,8 @@
 math: true
 permalink: the-exception-butterfly
 title: The Exception Butterfly
-description: An overview of gracefully handling Maybe/Either within Haskell.
-featured_image: /blog/images/the_exception_butterfly/featured.png
+description: An overview of gracefully composing Maybe/Either/Transformers within Haskell.
+featured_image: /blog/images/the_exception_butterfly/cover.png
 layout: page
 date: 2026-04-11
 ---

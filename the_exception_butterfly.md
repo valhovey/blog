@@ -134,7 +134,7 @@ getDescription :: IO (Maybe Text)
 -- Author here is now nested Either
 getAuthor :: IO (Either ApiError Person)
 
-getBook :: IO (Either BookError Book)
+getBook :: IO (Either Book BookError)
 getBook = runExceptT $ do
   mTitle <- lift getTitle
   mDescription <- lift getDescription
@@ -151,7 +151,7 @@ getBook = runExceptT $ do
 This is a toy example, but you can see things are starting to get unruly. In production code this can explode to a few hundred lines of nesting with sometimes up to four levels. How can we make this better? We can start by using `noteT` which is the transformer equivalent of `note` which we already encountered. There's a slight problem, though. `note` was pretty convenient in that it was a standalone method that upgraded a `Maybe` into an `Either`, but `noteT` _requires_ a `MaybeT` note an `IO (Maybe a)`. It's a bit more awkward, but we can nest the `newtype` constructor and `noteT` to clean up our code:
 
 {% highlight Haskell %}
-getBook :: IO (Either BookError Book)
+getBook :: IO (Either Book BookError)
 getBook = runExceptT $ do
   mTitle <- noteT NoTitle $ MaybeT getTitle
   mDescription <- noteT NoDescription $ MaybeT getDescription

@@ -9,7 +9,7 @@ date: 2026-04-11
 ---
 
 {:refdef: style="display:flex;align-items:center;flex-direction:column;"}
-![A diagram showing monad transformer operations between Maybe and Either](/blog/images/the_exception_butterfly/cover.jpg)
+![A diagram showing monad transformer operations between Maybe and Either](/blog/images/the_exception_butterfly/cover.png)
 {:refdef}
 
 The `Maybe` and `Either` types may be Haskell's most notable contribution to computer science, inspiring similar structures in Rust, C++, JavaScript, Python, and other languages. These types not only upgrade the usual concept of `null`, but they also include composable machinery to make dealing with potentially missing data or failing computations ergonomic and informed by the compiler. These machines come with a cost, however, and oftentimes the resulting code (even with their monadic goodness) can be difficult to reason about. It echoes "Callback Hell" in early JS days before Promises existed.

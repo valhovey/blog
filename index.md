@@ -7,7 +7,7 @@ title: Welcome
 Welcome to my Blog! I am a Computational Mathematics graduate from Utah State University. I grew up in the foothills of California, nestled between Tahoe and Yosemite. I am happiest when trudging up a fresh trail or starting up a new hobby.
 
 ## [The Exception Butterfly](./the-exception-butterfly)
-[![The Exception Butterfly](/blog/images/the_exception_butterfly/cover.jpg)](./the-exception-butterfly)
+[![The Exception Butterfly](/blog/images/the_exception_butterfly/cover.png)](./the-exception-butterfly)
 
 ## [A Tour of Haskell](./a-tour-of-haskell)
 [![A Tour of Haskell](/blog/images/a_tour_of_haskell/haskell-art.jpg)](./a-tour-of-haskell)

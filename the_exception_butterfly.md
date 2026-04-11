@@ -2,8 +2,8 @@
 math: true
 permalink: the-exception-butterfly
 title: The Exception Butterfly
-description: An overview of Haskell from values to monads for beginners.
-featured_image: /blog/images/the_exception_butterfly/haskell-art.jpg
+description: An overview of gracefully handling Maybe/Either within Haskell.
+featured_image: /blog/images/the_exception_butterfly/diagram.png
 layout: page
 date: 2026-04-11
 ---

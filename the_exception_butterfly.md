@@ -145,7 +145,7 @@ getBook = runExceptT $ do
   
   -- throwError uses MonadError to produce
   -- ExceptT (conceptually similar to Left)
-  pure $ case mTitle of
+  case mTitle of
     Nothing -> throwError NoTitle
     Just title -> case mDescription of
       Nothing -> throwError NoDescription

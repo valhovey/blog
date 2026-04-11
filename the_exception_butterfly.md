@@ -12,7 +12,7 @@ date: 2026-04-11
 ![A diagram showing monad transformer operations between Maybe and Either](/blog/images/the_exception_butterfly/cover.jpg)
 {:refdef}
 
-The `Maybe` and `Either` types may be Haskell's most notable contribution to computer science, inspiring similar structures in Rust, C++, Javascript, Python, and other languages. These types not only upgrade the usual concept of `null`, but they also include composable machinery to make dealing with potentially missing data or failing computations ergonomic and informed by the compiler. These machines come with a cost, however, and oftentimes the resulting code (even with their monadic goodness) can be difficult to reason about and harkens back to similar scenarios to "Callback Hell" in early JS days before Promises existed.
+The `Maybe` and `Either` types may be Haskell's most notable contribution to computer science, inspiring similar structures in Rust, C++, JavaScript, Python, and other languages. These types not only upgrade the usual concept of `null`, but they also include composable machinery to make dealing with potentially missing data or failing computations ergonomic and informed by the compiler. These machines come with a cost, however, and oftentimes the resulting code (even with their monadic goodness) can be difficult to reason about. It echoes "Callback Hell" in early JS days before Promises existed.
 
 Thankfully, there are a lot of extra tools we can use to make working with these types much easier. When used correctly, code involving potentially missing fields, errors, and even nested computations should read like a procedural program and still maintain all of the guarantees of Haskell's strong typing. I'm creating this post to share what I've found on my journey of using Haskell over the past three years.
 
@@ -42,16 +42,16 @@ data BookError
   | NoDescription
   | NoAuthor
 
-book :: Either Book BookError
+book :: Either BookError Book
 book = do
   title <- case mTitle of
-    Just title -> Right title
+    Just title -> pure title
     Nothing -> Left NoTitle
-  title <- case mDescription of
-    Just description -> Right description
+  description <- case mDescription of
+    Just description -> pure description
     Nothing -> Left NoDescription
   author <- case mAuthor of
-    Just author -> Right author
+    Just author -> pure author
     Nothing -> Left NoAuthor
   
   pure $ Book {..}
@@ -60,11 +60,11 @@ book = do
 There is actually a nice library method for this in `Control.Error.Util` called `note` that lets you tag the `Nothing` branch and promote the `Maybe` into an `Either`:
 
 {% highlight Haskell %}
-book :: Either Book BookError
+book :: Either BookError Book
 book = do
   title <- note NoTitle mTitle
-  description <- note NoDescription mTitle
-  author <- note NoAuthor mTitle
+  description <- note NoDescription mDescription
+  author <- note NoAuthor mAuthor
   
   pure $ Book {..}
 {% endhighlight %}
@@ -80,7 +80,7 @@ getTitle :: IO (Maybe Text)
 getDescription :: IO (Maybe Text)
 getAuthor :: IO (Maybe Person)
 
-getBook :: IO (Either Book BookError)
+getBook :: IO (Either BookError Book)
 getBook = do
   mTitle <- getTitle
   mDescription <- getDescription
@@ -88,8 +88,8 @@ getBook = do
 
   pure $ do
     title <- note NoTitle mTitle
-    description <- note NoDescription mTitle
-    author <- note NoAuthor mTitle
+    description <- note NoDescription mDescription
+    author <- note NoAuthor mAuthor
 
     pure $ Book {..}
 {% endhighlight %}
@@ -110,7 +110,7 @@ getBook = runMaybeT $ do
   pure $ Book {..}
 {% endhighlight %}
 
-Magic! Under the hood, this is just a `newtype` that represents the nested monads (in this case `IO (Maybe a))`). These transformers are abstract, but the outer monad is typically something derivative of `IO` and the inner monad is usually `Maybe` or `Either`. Sometimes you'll see `ListT`, but it has been more rare in my experience. Without getting into the weeds, these concepts all serve one common purpose "make dealing with potentially absent values inside of `IO` easy".
+Magic! Under the hood, this is just a `newtype` that represents the nested monads (in this case `IO (Maybe a)`). These transformers are abstract, but the outer monad is typically something derivative of `IO` and the inner monad is usually `Maybe` or `Either`. Sometimes you'll see `ListT`, but it has been more rare in my experience. Without getting into the weeds, these concepts all serve one common purpose "make dealing with potentially absent values inside of `IO` easy".
 
 {% highlight Haskell %}
 -- From the standard library:
@@ -123,6 +123,7 @@ class MonadTrans t where
 {% endhighlight %}
 
 Along with the `newtype` constructor/runner `MaybeT`/`runMaybeT`, there are also convenience functions. `lift` allows you to take something like `IO a` and turn it into a `MaybeT IO a` (which just wraps the result in `Just` under the hood). `hoistMaybe` allows you to take a `Maybe a` value and bring it into `MaybeT IO a` as well. Again, I'm using `IO` a lot here but the outer monad can really be anything. There is also `ExceptT`, which is very similar to the above example except it just uses `Either` instead of `Maybe`. The naming is unfortunate, as `ExceptT` has nothing to do with runtime exceptions. `ExceptT` also supports `lift` (all transformers must), as well as a similar `hoistEither` that parallels `hoistMaybe`.
+
 # Mixing Transformers
 
 This is where transformers alone have not done as good of a job with making code easy to write and easy to follow. Still, there are some nice utility functions akin to equivalents in the non-nested case that can clean things up nicely. Say you have the following control flow:
@@ -132,26 +133,29 @@ getTitle :: IO (Maybe Text)
 getDescription :: IO (Maybe Text)
 
 -- Author here is now nested Either
-getAuthor :: IO (Either ApiError Person)
+-- Pretend BookError now includes an ApiError
+getAuthor :: IO (Either BookError Person)
 
-getBook :: IO (Either Book BookError)
+getBook :: IO (Either BookError Book)
 getBook = runExceptT $ do
   mTitle <- lift getTitle
   mDescription <- lift getDescription
   
   author <- ExceptT $ getAuthor
   
-  case mTitle of
-    Nothing -> Left NoTitle
+  -- throwError uses MonadError to produce
+  -- ExceptT (conceptually similar to Left)
+  pure $ case mTitle of
+    Nothing -> throwError NoTitle
     Just title -> case mDescription of
-      Nothing -> NoDescription
+      Nothing -> throwError NoDescription
       Just description -> pure $ Book {..}
 {% endhighlight %}
 
-This is a toy example, but you can see things are starting to get unruly. In production code this can explode to a few hundred lines of nesting with sometimes up to four levels. How can we make this better? We can start by using `noteT` which is the transformer equivalent of `note` which we already encountered. There's a slight problem, though. `note` was pretty convenient in that it was a standalone method that upgraded a `Maybe` into an `Either`, but `noteT` _requires_ a `MaybeT` note an `IO (Maybe a)`. It's a bit more awkward, but we can nest the `newtype` constructor and `noteT` to clean up our code:
+This is a toy example, but you can see things are starting to get unruly. In production code this can explode to a few hundred lines of nesting with sometimes up to four levels. How can we make this better? We can start by using `noteT` which is the transformer equivalent of `note` which we already encountered. There's a slight problem, though. `note` was pretty convenient in that it was a standalone method that upgraded a `Maybe` into an `Either`, but `noteT` _requires_ a `MaybeT` not an `IO (Maybe a)`. It's a bit more awkward, but we can nest the `newtype` constructor and `noteT` to clean up our code:
 
 {% highlight Haskell %}
-getBook :: IO (Either Book BookError)
+getBook :: IO (Either BookError Book)
 getBook = runExceptT $ do
   mTitle <- noteT NoTitle $ MaybeT getTitle
   mDescription <- noteT NoDescription $ MaybeT getDescription
@@ -162,13 +166,13 @@ getBook = runExceptT $ do
 
 # A Missing Method
 
-Compared to much of Haskell, Monad Transformers have _a lot_ of methods to memorize and keep track of. When do you `lift` vs. `hoist`? How do I promote a value into the current transformer? The intuition comes with time and use of these patterns in your code, but a diagram can be helpful. It turns out there's actually a really wonderful symmetry for these operations:
+Compared to much of Haskell, Monad Transformers have _a lot_ of methods to memorize and keep track of. When do you `lift` vs. `hoist`? How do I promote a value into the current transformer? The intuition comes with time and use of these patterns in your code, but a diagram can be helpful. It turns out there's actually a really wonderful symmetry for these operations that I call "The Exception Butterfly":
 
 ![Diagram of monad transformer operations for Maybe and Either](/blog/images/the_exception_butterfly/diagram.png)
 
-I call this the "Exception Butterfly" and I wish I saw it a lot earlier on in my Haskell journey. There are a lot of moving pieces here, but the symmetry helps a lot and explains how (once you get to know them) these operations are not that hard to put into practice. Granted, what about the operation we just used to improve the code in the last example? You'll notice that there is no arrow from `m (Maybe a)` to `ExceptT e m a`, unless you count the composition of `MaybeT` with `noteT` (which is what we did).
+I wish I saw this a lot earlier on in my Haskell journey. There are a lot of moving pieces here, but the symmetry helps a lot and explains how (once you get to know them) these operations are not that hard to put into practice. Granted, what about the operation we just used to improve the code in the last example? You'll notice that there is no arrow from `m (Maybe a)` to `ExceptT e m a`, unless you count the composition of `MaybeT` with `noteT` (which is what we did).
 
-As I have written more and more Haskell, that is the arrow I have been missing the most. Perhaps avoiding yet-another-function is defending the [Fairbarn Threshhold](https://wiki.haskell.org/Fairbairn_threshold){:target="_blank"} of Haskell, but it's so common that I am always reaching for it and so I'm going to give it a name here: `annotateT`. It is like an upgraded version of `noteT` that also lifts.
+As I have written more and more Haskell, that is the arrow I have been missing the most. Perhaps avoiding yet-another-function is defending the [Fairbairn Threshold](https://wiki.haskell.org/Fairbairn_threshold){:target="_blank"} of Haskell, but it's so common that I am always reaching for it and so I'm going to give it a name here: `annotateT`. It is like an upgraded version of `noteT` that also lifts.
 
 ![The same diagram, but extended to include annotateT](/blog/images/the_exception_butterfly/diagram-extended.png)
 
@@ -176,4 +180,4 @@ As I have written more and more Haskell, that is the arrow I have been missing t
 annotateT e = (noteT e) . MaybeT
 {% endhighlight %}
 
-Ultimately though, there's not a good spot to place this concept as it has no parallel. Even if you don't end up making a utility method for it, just know that you can compose operations to produce it whenever you need it. In general, this holds. If you have some type and need to bring it somewhere else, follow arrows on the diagram and compose as you go.
+Even if you don't have a named method, know that you can compose operations to transform values whenever you need it. Follow arrows on the diagram and compose as you go.

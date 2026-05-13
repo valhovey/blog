@@ -10,7 +10,7 @@ Welcome to my Blog! I am a Computational Mathematics graduate from Utah State Un
 [![On Star Color, Black Holes, and the Evolution of Space on the Screen](/blog/images/on_star_color_black_holes_and_the_evolution_of_space_on_the_screen/cover.jpg)](./on-star-color-black-holes-and-the-evolution-of-space-on-the-screen)
 
 ## [The Exception Butterfly](./the-exception-butterfly)
-[![The Exception Butterfly](/blog/images/the_exception_butterfly/cover.jpg)](./the-exception-butterfly)
+[![The Exception Butterfly](/blog/images/the_exception_butterfly/cover.png)](./the-exception-butterfly)
 
 ## [A Tour of Haskell](./a-tour-of-haskell)
 [![A Tour of Haskell](/blog/images/a_tour_of_haskell/haskell-art.jpg)](./a-tour-of-haskell)

@@ -26,24 +26,24 @@ Wherever you look in the sky you will find a great diversity of stars of all col
 
 {:refdef: style="display:flex;align-items:center;flex-direction:column;"}
 ![M53, a globular cluster of densely packed ancient stars in Coma Berenices.](/blog/images/on_star_color_and_the_evolution_of_space_on_the_screen/m53_globular_cluster.jpg)
-*M53, a [globular cluster](https://en.wikipedia.org/wiki/Globular_cluster){:target="_blank"} in the Coma Berenices constellation. These dense clusters of stars are some of the oldest objects in the universe. ([credit](https://app.astrobin.com/u/valence?i=ixr3gr){:target="_blank"})*
+*M53, a [globular cluster](https://en.wikipedia.org/wiki/Globular_cluster){:target="_blank"} in the Coma Berenices constellation. These dense clusters of stars are some of the oldest objects in the universe. ([credit](https://app.astrobin.com/u/valence?i=ixr3gr){:target="_blank"})*{:.caption}
 {:refdef}
 
 {:refdef: style="display:flex;align-items:center;flex-direction:column;"}
 ![The Iris Nebula in Cepheus, a reflection nebula illuminated by a blue star.](/blog/images/on_star_color_and_the_evolution_of_space_on_the_screen/iris_nebula.jpg)
-*The [Iris Nebula](https://en.wikipedia.org/wiki/Iris_Nebula){:target="_blank"} in Cepheus, a region of the vast galactic Integrated Flux Nebula that sits above our position on the galactic plane. This region of space is illuminated by the blazing light of a blue star. ([credit](https://app.astrobin.com/u/valence?i=jl7u6j){:target="_blank"})*
+*The [Iris Nebula](https://en.wikipedia.org/wiki/Iris_Nebula){:target="_blank"} in Cepheus, a region of the vast galactic Integrated Flux Nebula that sits above our position on the galactic plane. This region of space is illuminated by the blazing light of a blue star. ([credit](https://app.astrobin.com/u/valence?i=jl7u6j){:target="_blank"})*{:.caption}
 {:refdef}
 
 Perhaps one of the most beautiful examples of star color in our night sky is the core of our Milky Way. In the Summer in the Northern hemisphere and in the Winter for the Southern hemisphere the core of our galaxy rises overhead at night and reveals an incomprehensible density of gold dust stars, interstellar dust, and vibrant nebulae.
 
 {:refdef: style="display:flex;align-items:center;flex-direction:column;"}
 ![The Milky Way core captured on a backpacking trip in Utah, showing dust lanes and golden core color.](/blog/images/on_star_color_and_the_evolution_of_space_on_the_screen/backpacking_milky_way.jpg)
-*I took this image on a backpacking trip in Utah in early Summer. The seeing that night was good enough to see detail in the dust lanes in the Milky Way and for this one minute exposure to reveal the golden color and even the Lagoon, Trifid, and Eagle nebulae looking into the core of our galaxy.*
+*I took this image on a backpacking trip in Utah in early Summer. The seeing that night was good enough to see detail in the dust lanes in the Milky Way and for this one minute exposure to reveal the golden color and even the Lagoon, Trifid, and Eagle nebulae looking into the core of our galaxy.*{:.caption}
 {:refdef}
 
 {:refdef: style="display:flex;align-items:center;flex-direction:column;"}
 ![A wide landscape photo of the Milky Way and Rho Ophiuchi cloud complex from City of Rocks, Idaho.](/blog/images/on_star_color_and_the_evolution_of_space_on_the_screen/city_of_rocks.jpg)
-*This image comes from the City of Rocks in Idaho, a beautiful natural preserve where you can go to appreciate the night sky unimpeded by the light pollution of large cities. To the right of the core of the Milky Way you can see the Rho Ophiuchi Cloud Complex containing the intensely orange star Antares and a region of dark dust that will show up even with phone photography.*
+*This image comes from the City of Rocks in Idaho, a beautiful natural preserve where you can go to appreciate the night sky unimpeded by the light pollution of large cities. To the right of the core of the Milky Way you can see the Rho Ophiuchi Cloud Complex containing the intensely orange star Antares and a region of dark dust that will show up even with phone photography.*{:.caption}
 {:refdef}
 
 Factors like light pollution, sky glow, zodiacal light (the glow of dust on the plane of our solar system), and the chromatic aberration of the lens will influence the colors rendered in many captures of the Milky Way. This has unfortunately produced a public perception of the Milky Way as being purple, green, blue, or even monochromatic. I've done a fair amount of color correction to help render the accurate colors of the sky in these images, but there are still some problems (you can notice the blue/purple stars in the top of the second image). Even with these smaller details, these images render the color of our sky far more honestly than all media I have seen up until this point in my life.

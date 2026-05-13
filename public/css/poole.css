@@ -234,6 +234,16 @@ img {
   border-radius: 5px;
 }
 
+.caption {
+  font-size: 0.85em;
+  color: #6b6b6b;
+  font-style: italic;
+  text-align: center;
+  margin-top: -0.5rem;
+  margin-bottom: 1.5rem;
+  max-width: 90%;
+}
+
 /* Tables */
 table {
   margin-bottom: 1rem;

@@ -3,13 +3,13 @@ math: true
 permalink: on-star-color-and-the-evolution-of-space-on-the-screen
 title: On Star Color and the Evolution of Space on the Screen
 description: How Project Hail Mary's faithful depiction of space changes science fiction forever.
-featured_image: /blog/images/on_star_color_and_the_evolution_of_space_on_the_screen/cover.jpg
+featured_image: /blog/images/on_star_color_and_the_evolution_of_space_on_the_screen/cover.png
 layout: page
 date: 2026-05-12
 ---
 
 {:refdef: style="display:flex;align-items:center;flex-direction:column;"}
-![A view through the spherical window of the Hail Mary spacecraft looking into the galactic plane.](/blog/images/on_star_color_and_the_evolution_of_space_on_the_screen/cover.jpg)
+![A view through the spherical window of the Hail Mary spacecraft looking into the galactic plane.](/blog/images/on_star_color_and_the_evolution_of_space_on_the_screen/cover.png)
 {:refdef}
 
 I'm still processing everything I experienced watching the theatrical release of [Project Hail Mary](https://www.imdb.com/title/tt12042730/){:target="_blank"}. There are seemingly innumerable ways a big screen adaptation of Andy Weir's masterpiece of a novel could have gone wrong, and yet they managed to succeed in all of them, including ones I did not even consider. For me, the most marvelous result of the film adaptation is that they somehow matched Weir's diligent and obsessive scientific accuracy in their visual approach to portraying space. I [do astrophotography](https://app.astrobin.com/u/valence){:target="_blank"} and spend hours on each of my images obsessing over the process and I still get details wrong all of the time. I don't think it is a controversial take that Project Hail Mary succeeded in rendering space more accurately than any movie before it. I'd like to focus on just one element of this picture: star color and the Milky Way.
@@ -73,13 +73,13 @@ The Martian also sadly portrays space as dark and empty, despite having an abund
 I want to focus on one scene in Project Hail Mary, which fortunately avoids spoilers as it takes place in the first five minutes of the film. Grace wakes up aboard the Hail Mary from a coma with no memory of how he got here and quickly comes to grips with the gravity of his situation with this stunning shot looking into the galactic plane out of the window:
 
 {:refdef: style="display:flex;align-items:center;flex-direction:column;"}
-![Grace's view through the spherical window of the Hail Mary, revealing the galactic plane with accurate star color.](/blog/images/on_star_color_and_the_evolution_of_space_on_the_screen/phm_galactic_plane_window.jpg)
+![Grace's view through the spherical window of the Hail Mary, revealing the galactic plane with accurate star color.](/blog/images/on_star_color_and_the_evolution_of_space_on_the_screen/phm_galactic_plane_window.png)
 {:refdef}
 
 I think that this shot alone changes science fiction forever. Not only is the color of the Milky Way and stars accurate, somehow they managed to accurately capture the bokeh shape of defocused stars. I think I can also see _distortion from the spherical window itself_, an effect that would be rendered from the set existing in the light path in addition to the camera. This is an incredibly difficult effect to fake effectively, so I have to conjecture that they must have shot the background in-camera possibly from a Southern hemisphere location given the region of space depicted in the shot. They may have even constructed a replica of the window set and racked focus to match the in-ship shot.
 
 {:refdef: style="display:flex;align-items:center;flex-direction:column;"}
-![A close detail of pink Hydrogen nebula regions in the Project Hail Mary galactic shot.](/blog/images/on_star_color_and_the_evolution_of_space_on_the_screen/phm_hydrogen_nebula.jpg)
+![A close detail of pink Hydrogen nebula regions in the Project Hail Mary galactic shot.](/blog/images/on_star_color_and_the_evolution_of_space_on_the_screen/phm_hydrogen_nebula.png)
 {:refdef}
 
 Cameras normally attenuate most of the light emitted by Hydrogen nebula with their IR block filters. If the camera used to film this shot was modified to allow for the Hydrogen alpha band of spectrum to be recorded by the sensor, you would see even more detail in these pink regions of space. I don't think this is an error, however. Our eyes are much more sensitive to green than any other color, and our eyes barely pick up the Hydrogen alpha band and instead mostly register the dimmer but bluer beta emission of Hydrogen gas.
@@ -87,7 +87,7 @@ Cameras normally attenuate most of the light emitted by Hydrogen nebula with the
 The shot immediately afterwards uses a different lens that itself has a fair amount of chromatic aberration and coma, but that still renders the star color and density of star fields in space. You'll also notice that they have maintained a black point that is not totally zero which reveals hints of structure in the cosmos that truly exist.
 
 {:refdef: style="display:flex;align-items:center;flex-direction:column;"}
-![A subsequent Project Hail Mary shot with chromatic aberration and coma, but still preserving star color and density.](/blog/images/on_star_color_and_the_evolution_of_space_on_the_screen/phm_chromatic_shot.jpg)
+![A subsequent Project Hail Mary shot with chromatic aberration and coma, but still preserving star color and density.](/blog/images/on_star_color_and_the_evolution_of_space_on_the_screen/phm_chromatic_shot.png)
 {:refdef}
 
 # A Beautiful Feature

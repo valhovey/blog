@@ -6,8 +6,8 @@ title: Welcome
 
 Welcome to my Blog! I am a Computational Mathematics graduate from Utah State University. I grew up in the foothills of California, nestled between Tahoe and Yosemite. I am happiest when trudging up a fresh trail or starting up a new hobby.
 
-## [On Star Color and the Evolution of Space on the Screen](./on-star-color-and-the-evolution-of-space-on-the-screen)
-[![On Star Color and the Evolution of Space on the Screen](/blog/images/on_star_color_and_the_evolution_of_space_on_the_screen/cover.png)](./on-star-color-and-the-evolution-of-space-on-the-screen)
+## [Star Color and the Evolution of Space on the Screen](./star-color-and-the-evolution-of-space-on-the-screen)
+[![Star Color and the Evolution of Space on the Screen](/blog/images/star_color_and_the_evolution_of_space_on_the_screen/cover.png)](./star-color-and-the-evolution-of-space-on-the-screen)
 
 ## [The Exception Butterfly](./the-exception-butterfly)
 [![The Exception Butterfly](/blog/images/the_exception_butterfly/cover.png)](./the-exception-butterfly)

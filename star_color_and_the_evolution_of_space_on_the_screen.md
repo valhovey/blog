@@ -90,7 +90,7 @@ The shot immediately afterwards uses a different lens that itself has a fair amo
 ![A subsequent Project Hail Mary shot with chromatic aberration and coma, but still preserving star color and density.](/blog/images/star_color_and_the_evolution_of_space_on_the_screen/phm_chromatic_shot.png)
 {:refdef}
 
-# A Beautiful Feature
+# A Beautiful Future
 
 The overarching theme of Project Hail Mary is one of hope. Where other movies chose cool and dark color grading for space, Hail Mary preferred warm color balances with abundant earth tones that are far more faithful to what space actually _looks and feels like_. This film not only gave me hope from its themes, but also hope for science fiction to learn from everything that it did right. Interstellar was known for its collaboration with scientists in an accurate depiction of a black hole that forever changed the public perception of space and its portrayal in media. I hope that Project Hail Mary serves as a template for future films proving that success can come from care for the details, a love for the craft of film, and a desire to represent the beauty of the natural world on and off of Earth.
 

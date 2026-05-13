@@ -24,6 +24,12 @@
         {% endif %}
       {% endif %}
     {% endfor %}
+
+    {% for post in site.posts %}
+      <a class="sidebar-nav-item{% if page.url == post.url %} active{% endif %}" href="/blog{{ post.url }}">{{ post.title }}</a>
+    {% endfor %}
+
+    <a class="sidebar-nav-item" href="{{ "/feed.xml" | prepend: site.baseurl }}">Subscribe via RSS</a>
   </nav>
 
   <div class="sidebar-item">
